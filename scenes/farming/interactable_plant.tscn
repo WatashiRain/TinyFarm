@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/farming/interactable_plant.gd" id="1_plant"]
+[ext_resource type="Script" path="res://scripts/effects/interaction_burst.gd" id="2_burst"]
+[ext_resource type="Shader" path="res://shaders/vegetation_sway.gdshader" id="3_sway"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_leaves"]
+shader = ExtResource("3_sway")
+shader_parameter/sway_strength = 0.65
+shader_parameter/sway_speed = 0.8
+shader_parameter/phase_offset = 2.4
+
+[node name="InteractablePlant" type="Node2D"]
+script = ExtResource("1_plant")
+
+[node name="Shadow" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-12, 0, -8, -3, 8, -3, 13, 0, 8, 3, -8, 3)
+color = Color(0.239216, 0.180392, 0.172549, 0.35)
+
+[node name="Stem" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-2, -2, -2, -21, 1, -21, 2, -2)
+color = Color(0.215686, 0.470588, 0.270588, 1)
+
+[node name="LeafLeft" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_leaves")
+polygon = PackedVector2Array(-1, -12, -13, -18, -16, -25, -8, -24, -1, -18)
+uv = PackedVector2Array(1, 1, 0.2, 0.7, 0, 0, 0.7, 0.1, 1, 0.5)
+color = Color(0.333333, 0.65098, 0.345098, 1)
+
+[node name="LeafRight" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_leaves")
+polygon = PackedVector2Array(0, -15, 10, -22, 16, -21, 12, -14, 2, -10)
+uv = PackedVector2Array(0, 1, 0.6, 0.1, 1, 0, 0.8, 0.7, 0.1, 1)
+color = Color(0.403922, 0.721569, 0.372549, 1)
+
+[node name="Berry" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-6, -20, -3, -24, 2, -24, 6, -20, 5, -15, 1, -12, -4, -14)
+color = Color(0.901961, 0.368627, 0.313726, 1)
+
+[node name="BerryLight" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-2, -21, 0, -22, 2, -20, 0, -18)
+color = Color(1, 0.666667, 0.443137, 1)
+
+[node name="Burst" type="Node2D" parent="."]
+position = Vector2(0, -17)
+script = ExtResource("2_burst")

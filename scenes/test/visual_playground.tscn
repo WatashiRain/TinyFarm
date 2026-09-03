@@ -1,15 +1,36 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene format=3 uid="uid://qb67sb7njnpr"]
 
-[ext_resource type="Script" path="res://scripts/world/visual_playground.gd" id="1_playground"]
-[ext_resource type="Script" path="res://scripts/world/farm_backdrop.gd" id="2_backdrop"]
+[ext_resource type="Script" uid="uid://bogk7dviid5" path="res://scripts/world/visual_playground.gd" id="1_playground"]
+[ext_resource type="Script" uid="uid://3o0nemdr7va8" path="res://scripts/world/farm_backdrop.gd" id="2_backdrop"]
 [ext_resource type="PackedScene" path="res://scenes/world/water_patch.tscn" id="3_water"]
 [ext_resource type="PackedScene" path="res://scenes/world/grass_tuft.tscn" id="4_grass"]
 [ext_resource type="PackedScene" path="res://scenes/world/world_decoration.tscn" id="5_decor"]
 [ext_resource type="PackedScene" path="res://scenes/world/cozy_tree.tscn" id="6_tree"]
 [ext_resource type="PackedScene" path="res://scenes/farming/interactable_plant.tscn" id="7_plant"]
 [ext_resource type="PackedScene" path="res://scenes/effects/ambient_effect.tscn" id="8_ambient"]
-[ext_resource type="Script" path="res://scripts/effects/camera_shake_2d.gd" id="9_camera"]
-[ext_resource type="Script" path="res://scripts/debug/pixel_grid.gd" id="10_grid"]
+[ext_resource type="Script" uid="uid://dobmxx81f48n0" path="res://scripts/effects/camera_shake_2d.gd" id="9_camera"]
+[ext_resource type="Script" uid="uid://cbvk2tq7lsm84" path="res://scripts/debug/pixel_grid.gd" id="10_grid"]
+[ext_resource type="PackedScene" path="res://scenes/world/grass_sprite.tscn" id="11_grass_sprite"]
+[ext_resource type="PackedScene" path="res://scenes/world/flower_sprite.tscn" id="12_flower_sprite"]
+[ext_resource type="PackedScene" path="res://scenes/world/rock_sprite.tscn" id="13_rock_sprite"]
+[ext_resource type="PackedScene" path="res://scenes/world/bush_sprite.tscn" id="14_bush_sprite"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/grass_01.tres" id="15_grass_01"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/grass_02.tres" id="16_grass_02"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/grass_03.tres" id="17_grass_03"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/flower_white_01.tres" id="18_flower_white"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/flower_yellow_01.tres" id="19_flower_yellow"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/flower_pink_01.tres" id="20_flower_pink"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/rock_small_01.tres" id="21_rock_01"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/rock_small_02.tres" id="22_rock_02"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/rock_small_03.tres" id="23_rock_03"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/bush_01.tres" id="24_bush_01"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/bush_02.tres" id="25_bush_02"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/stump_01.tres" id="26_stump"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/mushroom_red_01.tres" id="27_mushroom"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/leaf_01.tres" id="28_leaf_01"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/leaf_02.tres" id="29_leaf_02"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/sparkle_01.tres" id="30_sparkle_01"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/sparkle_02.tres" id="31_sparkle_02"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBox_debug"]
 bg_color = Color(0.105882, 0.14902, 0.137255, 0.84)
@@ -23,61 +44,71 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="VisualPlayground" type="Node2D"]
+[node name="VisualPlayground" type="Node2D" unique_id=104736026]
 script = ExtResource("1_playground")
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=678555571]
 
-[node name="Backdrop" type="Node2D" parent="World"]
+[node name="Backdrop" type="Node2D" parent="World" unique_id=410557525]
 script = ExtResource("2_backdrop")
 
-[node name="PixelGrid" type="Node2D" parent="World"]
+[node name="PixelGrid" type="Node2D" parent="World" unique_id=818527342]
 visible = false
 z_index = 10
 script = ExtResource("10_grid")
 
-[node name="WaterPatch" parent="World" instance=ExtResource("3_water")]
+[node name="WaterPatch" parent="World" unique_id=1998621008 instance=ExtResource("3_water")]
 position = Vector2(482, 229)
 
-[node name="GrassTuft01" parent="World" instance=ExtResource("4_grass")]
+[node name="GrassTuft01" parent="World" unique_id=912125195 instance=ExtResource("4_grass")]
 position = Vector2(48, 102)
 random_seed = 11
 
-[node name="GrassTuft02" parent="World" instance=ExtResource("4_grass")]
+[node name="GrassTuft02" parent="World" unique_id=173870846 instance=ExtResource("4_grass")]
 position = Vector2(98, 329)
 tuft_height = 16.0
 random_seed = 22
 
-[node name="GrassTuft03" parent="World" instance=ExtResource("4_grass")]
+[node name="GrassSprite01" parent="World" unique_id=163052253 instance=ExtResource("11_grass_sprite")]
 position = Vector2(394, 124)
-tuft_color = Color(0.270588, 0.533333, 0.301961, 1)
-random_seed = 33
+texture = ExtResource("15_grass_01")
+use_custom_sway = true
+sway_strength = 0.65
+sway_speed = 0.9
+phase_offset = 0.4
 
-[node name="GrassTuft04" parent="World" instance=ExtResource("4_grass")]
+[node name="GrassSprite02" parent="World" unique_id=2098038987 instance=ExtResource("11_grass_sprite")]
 position = Vector2(575, 128)
-tuft_height = 17.0
-random_seed = 44
+texture = ExtResource("16_grass_02")
+horizontal_flip = true
+use_custom_sway = true
+sway_strength = 0.55
+sway_speed = 1.0
+phase_offset = 2.2
 
-[node name="GrassTuft05" parent="World" instance=ExtResource("4_grass")]
+[node name="GrassSprite03" parent="World" unique_id=884514380 instance=ExtResource("11_grass_sprite")]
 position = Vector2(601, 307)
-tuft_width = 14.0
-random_seed = 55
+texture = ExtResource("17_grass_03")
+use_custom_sway = true
+sway_strength = 0.7
+sway_speed = 0.85
+phase_offset = 4.1
 
-[node name="GrassTuft06" parent="World" instance=ExtResource("4_grass")]
+[node name="GrassTuft06" parent="World" unique_id=1546788871 instance=ExtResource("4_grass")]
 position = Vector2(405, 325)
 tuft_height = 10.0
 random_seed = 66
 
-[node name="GrassTuft07" parent="World" instance=ExtResource("4_grass")]
+[node name="GrassTuft07" parent="World" unique_id=1149690636 instance=ExtResource("4_grass")]
 position = Vector2(319, 150)
 random_seed = 77
 
-[node name="GrassTuft08" parent="World" instance=ExtResource("4_grass")]
+[node name="GrassTuft08" parent="World" unique_id=1739022658 instance=ExtResource("4_grass")]
 position = Vector2(213, 132)
 tuft_width = 13.0
 random_seed = 88
 
-[node name="Crop01" parent="World" instance=ExtResource("4_grass")]
+[node name="Crop01" parent="World" unique_id=1449512191 instance=ExtResource("4_grass")]
 position = Vector2(128, 210)
 tuft_color = Color(0.423529, 0.670588, 0.333333, 1)
 tuft_height = 8.0
@@ -85,7 +116,7 @@ tuft_width = 8.0
 sway_strength = 0.8
 random_seed = 101
 
-[node name="Crop02" parent="World" instance=ExtResource("4_grass")]
+[node name="Crop02" parent="World" unique_id=90710959 instance=ExtResource("4_grass")]
 position = Vector2(178, 210)
 tuft_color = Color(0.423529, 0.670588, 0.333333, 1)
 tuft_height = 8.0
@@ -93,7 +124,7 @@ tuft_width = 8.0
 sway_strength = 0.8
 random_seed = 102
 
-[node name="Crop03" parent="World" instance=ExtResource("4_grass")]
+[node name="Crop03" parent="World" unique_id=1880739109 instance=ExtResource("4_grass")]
 position = Vector2(228, 210)
 tuft_color = Color(0.423529, 0.670588, 0.333333, 1)
 tuft_height = 8.0
@@ -101,7 +132,7 @@ tuft_width = 8.0
 sway_strength = 0.8
 random_seed = 103
 
-[node name="Crop04" parent="World" instance=ExtResource("4_grass")]
+[node name="Crop04" parent="World" unique_id=794571160 instance=ExtResource("4_grass")]
 position = Vector2(128, 240)
 tuft_color = Color(0.356863, 0.611765, 0.329412, 1)
 tuft_height = 9.0
@@ -109,7 +140,7 @@ tuft_width = 8.0
 sway_strength = 0.9
 random_seed = 104
 
-[node name="Crop05" parent="World" instance=ExtResource("4_grass")]
+[node name="Crop05" parent="World" unique_id=1699163351 instance=ExtResource("4_grass")]
 position = Vector2(178, 240)
 tuft_color = Color(0.356863, 0.611765, 0.329412, 1)
 tuft_height = 9.0
@@ -117,7 +148,7 @@ tuft_width = 8.0
 sway_strength = 0.9
 random_seed = 105
 
-[node name="Crop06" parent="World" instance=ExtResource("4_grass")]
+[node name="Crop06" parent="World" unique_id=1080374930 instance=ExtResource("4_grass")]
 position = Vector2(228, 240)
 tuft_color = Color(0.356863, 0.611765, 0.329412, 1)
 tuft_height = 9.0
@@ -125,7 +156,7 @@ tuft_width = 8.0
 sway_strength = 0.9
 random_seed = 106
 
-[node name="Crop07" parent="World" instance=ExtResource("4_grass")]
+[node name="Crop07" parent="World" unique_id=634964388 instance=ExtResource("4_grass")]
 position = Vector2(128, 270)
 tuft_color = Color(0.509804, 0.713726, 0.34902, 1)
 tuft_height = 7.0
@@ -133,7 +164,7 @@ tuft_width = 8.0
 sway_strength = 0.7
 random_seed = 107
 
-[node name="Crop08" parent="World" instance=ExtResource("4_grass")]
+[node name="Crop08" parent="World" unique_id=911536346 instance=ExtResource("4_grass")]
 position = Vector2(178, 270)
 tuft_color = Color(0.509804, 0.713726, 0.34902, 1)
 tuft_height = 7.0
@@ -141,7 +172,7 @@ tuft_width = 8.0
 sway_strength = 0.7
 random_seed = 108
 
-[node name="Crop09" parent="World" instance=ExtResource("4_grass")]
+[node name="Crop09" parent="World" unique_id=1068889907 instance=ExtResource("4_grass")]
 position = Vector2(228, 270)
 tuft_color = Color(0.509804, 0.713726, 0.34902, 1)
 tuft_height = 7.0
@@ -149,55 +180,80 @@ tuft_width = 8.0
 sway_strength = 0.7
 random_seed = 109
 
-[node name="Tree" parent="World" instance=ExtResource("6_tree")]
+[node name="Tree" parent="World" unique_id=1590602883 instance=ExtResource("6_tree")]
 position = Vector2(75, 178)
 
-[node name="Rock01" parent="World" instance=ExtResource("5_decor")]
+[node name="Bush01" parent="World" unique_id=1121122666 instance=ExtResource("14_bush_sprite")]
+position = Vector2(272, 130)
+texture = ExtResource("24_bush_01")
+
+[node name="Bush02" parent="World" unique_id=1194497284 instance=ExtResource("14_bush_sprite")]
+position = Vector2(560, 278)
+texture = ExtResource("25_bush_02")
+horizontal_flip = true
+
+[node name="Rock01" parent="World" unique_id=294593556 instance=ExtResource("13_rock_sprite")]
 position = Vector2(548, 317)
-variant = 1
+texture = ExtResource("21_rock_01")
 
-[node name="Rock02" parent="World" instance=ExtResource("5_decor")]
+[node name="Rock02" parent="World" unique_id=1929634514 instance=ExtResource("13_rock_sprite")]
 position = Vector2(387, 174)
-variant = 2
-primary_color = Color(0.427451, 0.501961, 0.466667, 1)
+texture = ExtResource("22_rock_02")
 
-[node name="Rock03" parent="World" instance=ExtResource("5_decor")]
+[node name="Rock03" parent="World" unique_id=1498077208 instance=ExtResource("13_rock_sprite")]
 position = Vector2(36, 284)
-primary_color = Color(0.498039, 0.545098, 0.490196, 1)
+texture = ExtResource("23_rock_03")
 
-[node name="Flower01" parent="World" instance=ExtResource("5_decor")]
+[node name="Flower01" parent="World" unique_id=2042856255 instance=ExtResource("12_flower_sprite")]
 position = Vector2(305, 111)
-decoration_kind = 1
-primary_color = Color(0.980392, 0.596078, 0.654902, 1)
+texture = ExtResource("18_flower_white")
+use_custom_sway = true
+sway_strength = 0.4
+sway_speed = 0.75
+phase_offset = 1.1
 
-[node name="Flower02" parent="World" instance=ExtResource("5_decor")]
+[node name="Flower02" parent="World" unique_id=4543904 instance=ExtResource("12_flower_sprite")]
 position = Vector2(362, 145)
-decoration_kind = 1
-primary_color = Color(0.717647, 0.666667, 0.956863, 1)
+texture = ExtResource("19_flower_yellow")
+horizontal_flip = true
+use_custom_sway = true
+sway_strength = 0.45
+sway_speed = 0.8
+phase_offset = 3.0
 
-[node name="Flower03" parent="World" instance=ExtResource("5_decor")]
+[node name="Flower03" parent="World" unique_id=1545463868 instance=ExtResource("12_flower_sprite")]
 position = Vector2(590, 189)
-decoration_kind = 1
-primary_color = Color(1, 0.768627, 0.454902, 1)
+texture = ExtResource("20_flower_pink")
+use_custom_sway = true
+sway_strength = 0.4
+sway_speed = 0.7
+phase_offset = 5.2
 
-[node name="Flower04" parent="World" instance=ExtResource("5_decor")]
+[node name="Flower04" parent="World" unique_id=717444493 instance=ExtResource("5_decor")]
 position = Vector2(442, 328)
 decoration_kind = 1
 primary_color = Color(0.980392, 0.596078, 0.654902, 1)
 
-[node name="DemoPlant" parent="World" instance=ExtResource("7_plant")]
+[node name="Stump01" parent="World" unique_id=685103123 instance=ExtResource("13_rock_sprite")]
+position = Vector2(64, 260)
+texture = ExtResource("26_stump")
+
+[node name="MushroomRed01" parent="World" unique_id=1118688502 instance=ExtResource("13_rock_sprite")]
+position = Vector2(455, 330)
+texture = ExtResource("27_mushroom")
+
+[node name="DemoPlant" parent="World" unique_id=1575850163 instance=ExtResource("7_plant")]
 position = Vector2(309, 190)
 
-[node name="FloatingLeaves" parent="World" instance=ExtResource("8_ambient")]
+[node name="FloatingLeaves" parent="World" unique_id=1724717041 instance=ExtResource("8_ambient")]
 position = Vector2(320, 180)
-particle_kind = 0
-particle_count = 4
 area_size = Vector2(560, 270)
 drift_speed = 8.0
 random_seed = 201
 particle_color = Color(0.521569, 0.709804, 0.317647, 0.85)
+particle_textures = Array[Texture2D]([ExtResource("28_leaf_01"), ExtResource("29_leaf_02")])
 
-[node name="Sparkles" parent="World" instance=ExtResource("8_ambient")]
+[node name="Sparkles" parent="World" unique_id=1659972108 instance=ExtResource("8_ambient")]
 position = Vector2(500, 222)
 particle_kind = 1
 particle_count = 3
@@ -205,34 +261,32 @@ area_size = Vector2(135, 70)
 drift_speed = 3.0
 random_seed = 202
 particle_color = Color(0.886275, 0.968627, 0.788235, 0.8)
+particle_textures = Array[Texture2D]([ExtResource("30_sparkle_01"), ExtResource("31_sparkle_02")])
 
-[node name="DustMotes" parent="World" instance=ExtResource("8_ambient")]
+[node name="DustMotes" parent="World" unique_id=1074674737 instance=ExtResource("8_ambient")]
 position = Vector2(228, 155)
 particle_kind = 2
-particle_count = 4
 area_size = Vector2(240, 120)
 drift_speed = 6.0
 random_seed = 203
 particle_color = Color(1, 0.870588, 0.596078, 0.7)
 
-[node name="Fireflies" parent="World" instance=ExtResource("8_ambient")]
+[node name="Fireflies" parent="World" unique_id=764090834 instance=ExtResource("8_ambient")]
 position = Vector2(475, 150)
 particle_kind = 3
 particle_count = 3
 area_size = Vector2(240, 120)
-drift_speed = 7.0
 random_seed = 204
 particle_color = Color(0.960784, 0.929412, 0.466667, 0.8)
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." unique_id=1358433053]
 position = Vector2(320, 180)
-enabled = true
 script = ExtResource("9_camera")
 
-[node name="DebugOverlay" type="CanvasLayer" parent="."]
+[node name="DebugOverlay" type="CanvasLayer" parent="." unique_id=1707864628]
 layer = 20
 
-[node name="Margin" type="MarginContainer" parent="DebugOverlay"]
+[node name="Margin" type="MarginContainer" parent="DebugOverlay" unique_id=1280544598]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -244,24 +298,24 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Panel" type="PanelContainer" parent="DebugOverlay/Margin"]
+[node name="Panel" type="PanelContainer" parent="DebugOverlay/Margin" unique_id=1122742565]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBox_debug")
 
-[node name="Padding" type="MarginContainer" parent="DebugOverlay/Margin/Panel"]
+[node name="Padding" type="MarginContainer" parent="DebugOverlay/Margin/Panel" unique_id=1957877246]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 7
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 7
 
-[node name="Text" type="VBoxContainer" parent="DebugOverlay/Margin/Panel/Padding"]
+[node name="Text" type="VBoxContainer" parent="DebugOverlay/Margin/Panel/Padding" unique_id=1605156141]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="Title" type="Label" parent="DebugOverlay/Margin/Panel/Padding/Text"]
+[node name="Title" type="Label" parent="DebugOverlay/Margin/Panel/Padding/Text" unique_id=1600986494]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.976471, 0.886275, 0.65098, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
@@ -270,8 +324,9 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_font_sizes/font_size = 14
 text = "TinyFarm — Visual Playground"
 
-[node name="Hint" type="Label" parent="DebugOverlay/Margin/Panel/Padding/Text"]
+[node name="Hint" type="Label" parent="DebugOverlay/Margin/Panel/Padding/Text" unique_id=1366262279]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.866667, 0.921569, 0.807843, 1)
 theme_override_font_sizes/font_size = 11
-text = "SPACE — interaction effect\nG — pixel grid"
+text = "SPACE — interaction effect
+G — pixel grid"

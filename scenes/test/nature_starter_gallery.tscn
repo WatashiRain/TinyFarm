@@ -1,0 +1,140 @@
+[gd_scene load_steps=22 format=3]
+
+[ext_resource type="Script" path="res://scripts/debug/nature_starter_gallery.gd" id="1_gallery"]
+[ext_resource type="PackedScene" path="res://scenes/world/grass_sprite.tscn" id="2_grass"]
+[ext_resource type="PackedScene" path="res://scenes/world/flower_sprite.tscn" id="3_flower"]
+[ext_resource type="PackedScene" path="res://scenes/world/bush_sprite.tscn" id="4_bush"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/grass_01.tres" id="5_grass_01"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/grass_02.tres" id="6_grass_02"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/grass_03.tres" id="7_grass_03"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/flower_white_01.tres" id="8_flower_white"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/flower_yellow_01.tres" id="9_flower_yellow"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/flower_pink_01.tres" id="10_flower_pink"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/rock_small_01.tres" id="11_rock_01"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/rock_small_02.tres" id="12_rock_02"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/rock_small_03.tres" id="13_rock_03"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/bush_01.tres" id="14_bush_01"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/bush_02.tres" id="15_bush_02"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/stump_01.tres" id="16_stump"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/mushroom_red_01.tres" id="17_mushroom"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/leaf_01.tres" id="18_leaf_01"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/leaf_02.tres" id="19_leaf_02"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/sparkle_01.tres" id="20_sparkle_01"]
+[ext_resource type="Texture2D" path="res://resources/atlases/nature_starter/sparkle_02.tres" id="21_sparkle_02"]
+
+[node name="NatureStarterGallery" type="Node2D"]
+script = ExtResource("1_gallery")
+
+[node name="Title" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 430.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(1, 0.941176, 0.690196, 1)
+theme_override_font_sizes/font_size = 18
+text = "TinyFarm — Nature Starter v0.1"
+
+[node name="Subtitle" type="Label" parent="."]
+offset_left = 25.0
+offset_top = 48.0
+offset_right = 560.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.752941, 0.827451, 0.741176, 1)
+theme_override_font_sizes/font_size = 11
+text = "Original 1× pixel art • displayed at 4× • each grid cell = 16×16 source pixels"
+
+[node name="AssetLayer" type="Node2D" parent="."]
+position = Vector2(32, 80)
+scale = Vector2(4, 4)
+
+[node name="Grass01" parent="AssetLayer" instance=ExtResource("2_grass")]
+position = Vector2(8, 16)
+texture = ExtResource("5_grass_01")
+use_custom_sway = true
+sway_strength = 0.45
+phase_offset = 0.4
+
+[node name="Grass02" parent="AssetLayer" instance=ExtResource("2_grass")]
+position = Vector2(24, 16)
+texture = ExtResource("6_grass_02")
+use_custom_sway = true
+sway_strength = 0.4
+phase_offset = 2.2
+
+[node name="Grass03" parent="AssetLayer" instance=ExtResource("2_grass")]
+position = Vector2(40, 16)
+texture = ExtResource("7_grass_03")
+use_custom_sway = true
+sway_strength = 0.5
+phase_offset = 4.1
+
+[node name="FlowerWhite" parent="AssetLayer" instance=ExtResource("3_flower")]
+position = Vector2(56, 16)
+texture = ExtResource("8_flower_white")
+use_custom_sway = true
+sway_strength = 0.3
+phase_offset = 1.1
+
+[node name="FlowerYellow" parent="AssetLayer" instance=ExtResource("3_flower")]
+position = Vector2(72, 16)
+texture = ExtResource("9_flower_yellow")
+use_custom_sway = true
+sway_strength = 0.3
+phase_offset = 3.0
+
+[node name="FlowerPink" parent="AssetLayer" instance=ExtResource("3_flower")]
+position = Vector2(88, 16)
+texture = ExtResource("10_flower_pink")
+use_custom_sway = true
+sway_strength = 0.3
+phase_offset = 5.2
+
+[node name="Rock01" type="Sprite2D" parent="AssetLayer"]
+position = Vector2(104, 8)
+texture = ExtResource("11_rock_01")
+
+[node name="Rock02" type="Sprite2D" parent="AssetLayer"]
+position = Vector2(120, 8)
+texture = ExtResource("12_rock_02")
+
+[node name="Rock03" type="Sprite2D" parent="AssetLayer"]
+position = Vector2(136, 8)
+texture = ExtResource("13_rock_03")
+
+[node name="Bush01" parent="AssetLayer" instance=ExtResource("4_bush")]
+position = Vector2(16, 48)
+texture = ExtResource("14_bush_01")
+use_custom_sway = true
+sway_strength = 0.25
+phase_offset = 0.8
+
+[node name="Bush02" parent="AssetLayer" instance=ExtResource("4_bush")]
+position = Vector2(48, 48)
+texture = ExtResource("15_bush_02")
+use_custom_sway = true
+sway_strength = 0.25
+phase_offset = 3.8
+
+[node name="Stump" type="Sprite2D" parent="AssetLayer"]
+position = Vector2(72, 40)
+texture = ExtResource("16_stump")
+
+[node name="Mushroom" type="Sprite2D" parent="AssetLayer"]
+position = Vector2(88, 40)
+texture = ExtResource("17_mushroom")
+
+[node name="Leaf01" type="Sprite2D" parent="AssetLayer"]
+position = Vector2(104, 40)
+texture = ExtResource("18_leaf_01")
+
+[node name="Leaf02" type="Sprite2D" parent="AssetLayer"]
+position = Vector2(120, 40)
+texture = ExtResource("19_leaf_02")
+
+[node name="Sparkle01" type="Sprite2D" parent="AssetLayer"]
+position = Vector2(136, 40)
+texture = ExtResource("20_sparkle_01")
+
+[node name="Sparkle02" type="Sprite2D" parent="AssetLayer"]
+position = Vector2(8, 56)
+texture = ExtResource("21_sparkle_02")

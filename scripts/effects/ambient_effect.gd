@@ -9,6 +9,7 @@ enum ParticleKind { LEAF, SPARKLE, DUST, FIREFLY }
 @export_range(1.0, 20.0, 0.5) var drift_speed: float = 7.0
 @export var random_seed: int = 100
 @export var particle_color: Color = Color("#e6d77a")
+@export var particle_textures: Array[Texture2D] = []
 
 var _positions := PackedVector2Array()
 var _phases := PackedFloat32Array()
@@ -69,15 +70,29 @@ func _draw() -> void:
 		match particle_kind:
 			ParticleKind.LEAF:
 				draw_set_transform(point, sin(_elapsed + _phases[index]) * 0.45)
-				draw_colored_polygon(_leaf_shape, particle_color)
+				var leaf_texture := _particle_texture(index)
+				if leaf_texture != null:
+					draw_texture(leaf_texture, -leaf_texture.get_size() * 0.5, Color(1.0, 1.0, 1.0, particle_color.a))
+				else:
+					draw_colored_polygon(_leaf_shape, particle_color)
 				draw_set_transform(Vector2.ZERO, 0.0)
 			ParticleKind.SPARKLE:
 				if pulse > 0.55:
-					var sparkle_size := 1.0 + pulse * 2.0
-					draw_line(point - Vector2(sparkle_size, 0.0), point + Vector2(sparkle_size, 0.0), particle_color, 1.0)
-					draw_line(point - Vector2(0.0, sparkle_size), point + Vector2(0.0, sparkle_size), particle_color, 1.0)
+					var sparkle_texture := _particle_texture(index)
+					if sparkle_texture != null:
+						draw_texture(sparkle_texture, point - sparkle_texture.get_size() * 0.5, Color(1.0, 1.0, 1.0, particle_color.a * pulse))
+					else:
+						var sparkle_size := 1.0 + pulse * 2.0
+						draw_line(point - Vector2(sparkle_size, 0.0), point + Vector2(sparkle_size, 0.0), particle_color, 1.0)
+						draw_line(point - Vector2(0.0, sparkle_size), point + Vector2(0.0, sparkle_size), particle_color, 1.0)
 			ParticleKind.DUST:
 				draw_circle(point, 0.7, Color(particle_color, 0.25 + pulse * 0.3))
 			ParticleKind.FIREFLY:
 				draw_circle(point, 2.5, Color(particle_color, 0.08 + pulse * 0.12))
 				draw_circle(point, 1.0, Color(particle_color, 0.45 + pulse * 0.5))
+
+
+func _particle_texture(index: int) -> Texture2D:
+	if particle_textures.is_empty():
+		return null
+	return particle_textures[index % particle_textures.size()]

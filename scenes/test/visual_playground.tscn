@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://scripts/world/visual_playground.gd" id="1_playground"]
 [ext_resource type="Script" path="res://scripts/world/farm_backdrop.gd" id="2_backdrop"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://scenes/farming/interactable_plant.tscn" id="7_plant"]
 [ext_resource type="PackedScene" path="res://scenes/effects/ambient_effect.tscn" id="8_ambient"]
 [ext_resource type="Script" path="res://scripts/effects/camera_shake_2d.gd" id="9_camera"]
+[ext_resource type="Script" path="res://scripts/debug/pixel_grid.gd" id="10_grid"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBox_debug"]
 bg_color = Color(0.105882, 0.14902, 0.137255, 0.84)
@@ -29,6 +30,11 @@ script = ExtResource("1_playground")
 
 [node name="Backdrop" type="Node2D" parent="World"]
 script = ExtResource("2_backdrop")
+
+[node name="PixelGrid" type="Node2D" parent="World"]
+visible = false
+z_index = 10
+script = ExtResource("10_grid")
 
 [node name="WaterPatch" parent="World" instance=ExtResource("3_water")]
 position = Vector2(482, 229)
@@ -268,4 +274,4 @@ text = "TinyFarm — Visual Playground"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.866667, 0.921569, 0.807843, 1)
 theme_override_font_sizes/font_size = 11
-text = "SPACE — interaction effect"
+text = "SPACE — interaction effect\nG — pixel grid"

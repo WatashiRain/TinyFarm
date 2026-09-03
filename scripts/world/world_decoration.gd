@@ -2,17 +2,31 @@ class_name WorldDecoration
 extends Node2D
 
 enum DecorationKind { ROCK, FLOWER }
+const SHARED_SWAY_MATERIAL: ShaderMaterial = preload("res://resources/materials/vegetation_sway.tres")
 
 @export var decoration_kind: DecorationKind = DecorationKind.ROCK
 @export var variant: int = 0
 @export var primary_color: Color = Color("#738078")
+@export var sprite_texture: Texture2D
+@export var horizontal_flip: bool = false
+@export var pixel_offset: Vector2 = Vector2.ZERO
+
+@onready var sprite: Sprite2D = $Sprite
 
 
 func _ready() -> void:
+	sprite.texture = sprite_texture
+	sprite.visible = sprite_texture != null
+	sprite.flip_h = horizontal_flip
+	if sprite_texture != null:
+		sprite.position = Vector2(roundf(pixel_offset.x), roundf(pixel_offset.y) - floorf(float(sprite_texture.get_height()) * 0.5))
+		sprite.material = SHARED_SWAY_MATERIAL if decoration_kind == DecorationKind.FLOWER else null
 	queue_redraw()
 
 
 func _draw() -> void:
+	if sprite_texture != null:
+		return
 	if decoration_kind == DecorationKind.ROCK:
 		_draw_rock()
 	else:

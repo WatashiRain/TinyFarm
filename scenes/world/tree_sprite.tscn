@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/tree_idle.gd" id="1_tree"]
+
+[node name="TreeSprite" type="Node2D"]
+script = ExtResource("1_tree")
+
+[node name="TrunkSprite" type="Sprite2D" parent="."]
+visible = false
+
+[node name="Foliage" type="Node2D" parent="."]
+
+[node name="FoliageSprite" type="Sprite2D" parent="Foliage"]
+visible = false
+
+[node name="ParticleHook" type="Node2D" parent="Foliage"]

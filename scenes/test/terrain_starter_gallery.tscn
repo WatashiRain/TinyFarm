@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/debug/terrain_starter_gallery.gd" id="1_gallery"]
+[ext_resource type="TileSet" path="res://resources/tilesets/terrain_starter_v01.tres" id="2_tileset"]
+
+[node name="TerrainStarterGallery" type="Node2D"]
+script = ExtResource("1_gallery")
+
+[node name="Title" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 14.0
+offset_right = 520.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(1, 0.941176, 0.690196, 1)
+theme_override_font_sizes/font_size = 18
+text = "TinyFarm — Terrain Starter v0.1"
+
+[node name="Subtitle" type="Label" parent="."]
+offset_left = 25.0
+offset_top = 38.0
+offset_right = 610.0
+offset_bottom = 56.0
+theme_override_colors/font_color = Color(0.752941, 0.827451, 0.741176, 1)
+theme_override_font_sizes/font_size = 10
+text = "Original 1× pixel terrain • displayed at 2× • grid cells = 16×16 source pixels"
+
+[node name="GrassLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 58.0
+offset_right = 145.0
+offset_bottom = 80.0
+text = "GRASS"
+
+[node name="DirtLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 90.0
+offset_right = 145.0
+offset_bottom = 112.0
+text = "DIRT"
+
+[node name="FarmLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 122.0
+offset_right = 145.0
+offset_bottom = 144.0
+text = "FARM SOIL"
+
+[node name="PathLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 154.0
+offset_right = 145.0
+offset_bottom = 176.0
+text = "PATH"
+
+[node name="WaterLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 186.0
+offset_right = 145.0
+offset_bottom = 208.0
+text = "WATER / SHORE"
+
+[node name="DetailsLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 218.0
+offset_right = 145.0
+offset_bottom = 240.0
+text = "DETAILS"
+
+[node name="Tiles" type="TileMapLayer" parent="."]
+position = Vector2(164, 54)
+scale = Vector2(2, 2)
+tile_set = ExtResource("2_tileset")

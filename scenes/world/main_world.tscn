@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/world/main_world.gd" id="1_world"]
 [ext_resource type="PackedScene" path="res://scenes/test/visual_playground.tscn" id="2_playground"]
 [ext_resource type="PackedScene" path="res://scenes/ui/gameplay_hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/inventory_ui.tscn" id="4_inventory"]
+[ext_resource type="PackedScene" path="res://scenes/gathering/resource_node.tscn" id="5_resource"]
 
 [node name="MainWorld" type="Node2D"]
 script = ExtResource("1_world")
@@ -32,6 +34,41 @@ position = Vector2(636, 322)
 theme_override_colors/font_color = Color(0.862745, 0.8, 0.517647, 1)
 text = "FOREST →"
 
+[node name="Gatherables" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="FarmPlant" parent="Gatherables" instance=ExtResource("5_resource")]
+position = Vector2(390, 270)
+persistent_id = &"farm_plant_01"
+kind = 2
+required_tool = &""
+drop_item_id = &"fiber"
+drop_quantity = 2
+hits_required = 1
+
+[node name="ForestTree" parent="Gatherables" instance=ExtResource("5_resource")]
+position = Vector2(680, 225)
+persistent_id = &"forest_tree_01"
+
+[node name="ForestRock" parent="Gatherables" instance=ExtResource("5_resource")]
+position = Vector2(728, 282)
+persistent_id = &"forest_rock_01"
+kind = 1
+required_tool = &"basic_pickaxe"
+drop_item_id = &"stone"
+drop_quantity = 3
+
+[node name="ForestPlant" parent="Gatherables" instance=ExtResource("5_resource")]
+position = Vector2(658, 322)
+persistent_id = &"forest_plant_01"
+kind = 2
+required_tool = &""
+drop_item_id = &"fiber"
+drop_quantity = 2
+hits_required = 1
+
 [node name="GameplayHUD" parent="." instance=ExtResource("3_hud")]
+
+[node name="InventoryUI" parent="." instance=ExtResource("4_inventory")]
 
 [editable path="PlaygroundBase"]

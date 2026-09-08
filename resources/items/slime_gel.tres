@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/item_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"slime_gel"
+display_name = "Slime Gel"
+description = "A springy teal monster drop."
+category = 5
+max_stack = 99
+sell_value = 4
+placeholder_color = Color(0.309804, 0.666667, 0.623529, 1)

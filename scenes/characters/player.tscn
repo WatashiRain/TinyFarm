@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/characters/player_controller.gd" id="1_controller"]
 [ext_resource type="Texture2D" uid="uid://2qr4c055jkp3" path="res://art/characters/player/Basic_Chun.png" id="2_player"]
 [ext_resource type="Script" path="res://scripts/characters/player_camera.gd" id="3_player_camera"]
 [ext_resource type="Script" path="res://scripts/stats/player_stats.gd" id="4_stats"]
+[ext_resource type="Script" path="res://scripts/characters/tool_controller.gd" id="5_tools"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_left"]
 atlas = ExtResource("2_player")
@@ -76,3 +77,6 @@ script = ExtResource("3_player_camera")
 
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("4_stats")
+
+[node name="ToolController" type="Node2D" parent="."]
+script = ExtResource("5_tools")

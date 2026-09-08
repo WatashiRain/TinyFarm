@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/item_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"basic_sword"
+display_name = "Basic Sword"
+description = "A simple sword for close combat."
+category = 6
+max_stack = 1
+sell_value = 25
+placeholder_color = Color(0.862745, 0.8, 0.517647, 1)

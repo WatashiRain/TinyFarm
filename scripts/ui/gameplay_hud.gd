@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var hp_bar: ProgressBar = $SafeArea/Top/Content/Stats/HP
 @onready var energy_bar: ProgressBar = $SafeArea/Top/Content/Stats/Energy
 @onready var mana_bar: ProgressBar = $SafeArea/Top/Content/Stats/Mana
+@onready var xp_bar: ProgressBar = $SafeArea/Top/Content/Stats/XP
 @onready var level_label: Label = $SafeArea/Top/Content/Meta/Level
 @onready var time_label: Label = $SafeArea/Top/Content/Meta/Time
 @onready var region_label: Label = $SafeArea/Top/Content/Meta/Region
@@ -27,10 +28,12 @@ func _bind_stats(stats: PlayerStats) -> void:
 	stats.health_changed.connect(func(value: int, maximum: int) -> void: _set_bar(hp_bar, value, maximum))
 	stats.energy_changed.connect(func(value: int, maximum: int) -> void: _set_bar(energy_bar, value, maximum))
 	stats.mana_changed.connect(func(value: int, maximum: int) -> void: _set_bar(mana_bar, value, maximum))
+	stats.experience_changed.connect(func(value: int, required: int) -> void: _set_bar(xp_bar, value, required))
 	stats.level_changed.connect(func(value: int) -> void: level_label.text = "LV %d" % value)
 	_set_bar(hp_bar, stats.health, stats.max_health)
 	_set_bar(energy_bar, stats.energy, stats.max_energy)
 	_set_bar(mana_bar, stats.mana, stats.max_mana)
+	_set_bar(xp_bar, stats.experience, stats.experience_to_next_level())
 	level_label.text = "LV %d" % stats.level
 
 

@@ -69,6 +69,12 @@ layout_mode = 2
 show_percentage = false
 theme_override_styles/fill = SubResource("Style_mana")
 
+[node name="XP" type="ProgressBar" parent="SafeArea/Top/Content/Stats"]
+custom_minimum_size = Vector2(104, 5)
+layout_mode = 2
+show_percentage = false
+theme_override_styles/fill = SubResource("Style_energy")
+
 [node name="Meta" type="VBoxContainer" parent="SafeArea/Top/Content"]
 layout_mode = 2
 

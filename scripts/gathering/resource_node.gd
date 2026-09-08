@@ -44,6 +44,18 @@ func _react() -> void:
 	var tween := create_tween().set_trans(Tween.TRANS_QUAD)
 	tween.tween_property(self, "scale", Vector2(0.9, 1.08), 0.06)
 	tween.tween_property(self, "scale", Vector2.ONE, 0.1)
+	var burst_color := Color("#a76c43") if kind == Kind.TREE else (Color("#9aa59a") if kind == Kind.ROCK else Color("#77ad58"))
+	for index: int in range(4):
+		var pixel := Polygon2D.new()
+		pixel.polygon = PackedVector2Array([Vector2(-1, -1), Vector2(1, -1), Vector2(1, 1), Vector2(-1, 1)])
+		pixel.color = burst_color
+		get_tree().current_scene.add_child(pixel)
+		pixel.global_position = global_position + Vector2(0, -8)
+		var direction := Vector2.from_angle(-PI * 0.85 + index * PI * 0.23) * 9.0
+		var particle_tween := pixel.create_tween().set_parallel(true)
+		particle_tween.tween_property(pixel, "global_position", pixel.global_position + direction, 0.22)
+		particle_tween.tween_property(pixel, "modulate:a", 0.0, 0.22)
+		particle_tween.chain().tween_callback(pixel.queue_free)
 
 
 func _spawn_drop() -> void:

@@ -1,0 +1,89 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" uid="uid://2qr4c055jkp3" path="res://art/characters/player/Basic_Chun.png" id="1_player"]
+
+[node name="PlayerDirectionGallery" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+color = Color(0.113725, 0.145098, 0.14902, 1)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 520.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(1, 0.941176, 0.690196, 1)
+theme_override_font_sizes/font_size = 18
+text = "TinyFarm — Player Directions"
+
+[node name="Subtitle" type="Label" parent="."]
+offset_left = 25.0
+offset_top = 48.0
+offset_right = 610.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.752941, 0.827451, 0.741176, 1)
+theme_override_font_sizes/font_size = 11
+text = "Basic_Chun.png • actual 36×43 frames • displayed at 3× nearest-neighbor"
+
+[node name="Left" type="Sprite2D" parent="."]
+position = Vector2(100, 164)
+scale = Vector2(3, 3)
+texture = ExtResource("1_player")
+hframes = 4
+frame = 1
+
+[node name="Right" type="Sprite2D" parent="."]
+position = Vector2(245, 164)
+scale = Vector2(3, 3)
+texture = ExtResource("1_player")
+hframes = 4
+frame = 0
+
+[node name="Front" type="Sprite2D" parent="."]
+position = Vector2(390, 164)
+scale = Vector2(3, 3)
+texture = ExtResource("1_player")
+hframes = 4
+frame = 2
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(535, 164)
+scale = Vector2(3, 3)
+texture = ExtResource("1_player")
+hframes = 4
+frame = 3
+
+[node name="LeftLabel" type="Label" parent="."]
+offset_left = 74.0
+offset_top = 246.0
+offset_right = 128.0
+offset_bottom = 270.0
+text = "LEFT"
+horizontal_alignment = 1
+
+[node name="RightLabel" type="Label" parent="."]
+offset_left = 215.0
+offset_top = 246.0
+offset_right = 275.0
+offset_bottom = 270.0
+text = "RIGHT"
+horizontal_alignment = 1
+
+[node name="FrontLabel" type="Label" parent="."]
+offset_left = 355.0
+offset_top = 246.0
+offset_right = 425.0
+offset_bottom = 270.0
+text = "FRONT"
+horizontal_alignment = 1
+
+[node name="BackLabel" type="Label" parent="."]
+offset_left = 505.0
+offset_top = 246.0
+offset_right = 565.0
+offset_bottom = 270.0
+text = "BACK"
+horizontal_alignment = 1

@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var demo_plant: InteractablePlant = $World/DemoPlant
-@onready var camera: CameraShake2D = $Camera
+@onready var camera: CameraShake2D = $World/Player/Camera2D
 @onready var pixel_grid: PixelGrid = $World/PixelGrid
 
 

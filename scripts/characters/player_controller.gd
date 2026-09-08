@@ -23,6 +23,7 @@ var last_facing: Facing = Facing.DOWN
 
 
 func _ready() -> void:
+	add_to_group("player")
 	_apply_facing_visual()
 
 

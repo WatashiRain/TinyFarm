@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scripts/world/main_world.gd" id="1_world"]
 [ext_resource type="PackedScene" path="res://scenes/test/visual_playground.tscn" id="2_playground"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" path="res://scenes/gathering/resource_node.tscn" id="5_resource"]
 [ext_resource type="PackedScene" path="res://scenes/farming/farming_grid.tscn" id="6_farm"]
 [ext_resource type="Script" path="res://scripts/world/day_night_visuals.gd" id="7_daynight"]
+[ext_resource type="PackedScene" path="res://scenes/ui/crafting_ui.tscn" id="8_crafting"]
+[ext_resource type="PackedScene" path="res://scenes/building/building_system.tscn" id="9_building"]
+[ext_resource type="PackedScene" path="res://scenes/building/storage_container.tscn" id="10_chest"]
 
 [node name="MainWorld" type="Node2D"]
 script = ExtResource("1_world")
@@ -75,8 +78,16 @@ position = Vector2(300, 242)
 [node name="DayNightVisuals" type="CanvasModulate" parent="."]
 script = ExtResource("7_daynight")
 
+[node name="BuildingSystem" parent="." instance=ExtResource("9_building")]
+
+[node name="StarterChest" parent="." instance=ExtResource("10_chest")]
+position = Vector2(430, 330)
+storage_id = &"starter_chest"
+
 [node name="GameplayHUD" parent="." instance=ExtResource("3_hud")]
 
 [node name="InventoryUI" parent="." instance=ExtResource("4_inventory")]
+
+[node name="CraftingUI" parent="." instance=ExtResource("8_crafting")]
 
 [editable path="PlaygroundBase"]

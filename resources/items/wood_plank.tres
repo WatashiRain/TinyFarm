@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/item_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"wood_plank"
+display_name = "Wood Plank"
+description = "A shaped building material."
+category = 8
+max_stack = 99
+sell_value = 4
+placeholder_color = Color(0.69, 0.43, 0.27, 1)

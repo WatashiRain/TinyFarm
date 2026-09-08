@@ -28,6 +28,7 @@ const ITEM_PATHS := [
 	"res://resources/items/wood_plank.tres", "res://resources/items/stone_block.tres",
 	"res://resources/items/basic_chest.tres", "res://resources/items/workbench.tres",
 	"res://resources/items/fence.tres", "res://resources/items/wood_floor.tres",
+	"res://resources/items/bat_wing.tres", "res://resources/items/spirit_dust.tres",
 ]
 
 

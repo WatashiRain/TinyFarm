@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://scripts/world/main_world.gd" id="1_world"]
 [ext_resource type="PackedScene" path="res://scenes/test/visual_playground.tscn" id="2_playground"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/crafting_ui.tscn" id="8_crafting"]
 [ext_resource type="PackedScene" path="res://scenes/building/building_system.tscn" id="9_building"]
 [ext_resource type="PackedScene" path="res://scenes/building/storage_container.tscn" id="10_chest"]
+[ext_resource type="PackedScene" path="res://scenes/monsters/monster.tscn" id="11_monster"]
+[ext_resource type="Resource" path="res://resources/monsters/slime.tres" id="12_slime"]
+[ext_resource type="Resource" path="res://resources/monsters/bat.tres" id="13_bat"]
+[ext_resource type="Resource" path="res://resources/monsters/spirit.tres" id="14_spirit"]
 
 [node name="MainWorld" type="Node2D"]
 script = ExtResource("1_world")
@@ -83,6 +87,21 @@ script = ExtResource("7_daynight")
 [node name="StarterChest" parent="." instance=ExtResource("10_chest")]
 position = Vector2(430, 330)
 storage_id = &"starter_chest"
+
+[node name="Monsters" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Slime" parent="Monsters" instance=ExtResource("11_monster")]
+position = Vector2(664, 252)
+data = ExtResource("12_slime")
+
+[node name="ForestBat" parent="Monsters" instance=ExtResource("11_monster")]
+position = Vector2(724, 220)
+data = ExtResource("13_bat")
+
+[node name="ForestSpirit" parent="Monsters" instance=ExtResource("11_monster")]
+position = Vector2(752, 322)
+data = ExtResource("14_spirit")
 
 [node name="GameplayHUD" parent="." instance=ExtResource("3_hud")]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/characters/player_controller.gd" id="1_controller"]
 [ext_resource type="Texture2D" uid="uid://2qr4c055jkp3" path="res://art/characters/player/Basic_Chun.png" id="2_player"]
 [ext_resource type="Script" path="res://scripts/characters/player_camera.gd" id="3_player_camera"]
+[ext_resource type="Script" path="res://scripts/stats/player_stats.gd" id="4_stats"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_left"]
 atlas = ExtResource("2_player")
@@ -72,3 +73,6 @@ shape = SubResource("RectangleShape2D_feet")
 enabled = true
 position_smoothing_enabled = false
 script = ExtResource("3_player_camera")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("4_stats")

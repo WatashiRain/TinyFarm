@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/gameplay_hud.gd" id="1_hud"]
+
+[sub_resource type="StyleBoxFlat" id="Style_panel"]
+bg_color = Color(0.105882, 0.14902, 0.137255, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.439216, 0.678431, 0.360784, 0.65)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="Style_hp"]
+bg_color = Color(0.788235, 0.309804, 0.286275, 1)
+
+[sub_resource type="StyleBoxFlat" id="Style_energy"]
+bg_color = Color(0.568627, 0.788235, 0.407843, 1)
+
+[sub_resource type="StyleBoxFlat" id="Style_mana"]
+bg_color = Color(0.309804, 0.666667, 0.623529, 1)
+
+[node name="GameplayHUD" type="CanvasLayer"]
+layer = 30
+script = ExtResource("1_hud")
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = -8.0
+mouse_filter = 2
+
+[node name="Top" type="PanelContainer" parent="SafeArea"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("Style_panel")
+
+[node name="Content" type="HBoxContainer" parent="SafeArea/Top"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Stats" type="VBoxContainer" parent="SafeArea/Top/Content"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HP" type="ProgressBar" parent="SafeArea/Top/Content/Stats"]
+custom_minimum_size = Vector2(104, 10)
+layout_mode = 2
+show_percentage = false
+theme_override_styles/fill = SubResource("Style_hp")
+
+[node name="Energy" type="ProgressBar" parent="SafeArea/Top/Content/Stats"]
+custom_minimum_size = Vector2(104, 8)
+layout_mode = 2
+show_percentage = false
+theme_override_styles/fill = SubResource("Style_energy")
+
+[node name="Mana" type="ProgressBar" parent="SafeArea/Top/Content/Stats"]
+custom_minimum_size = Vector2(104, 8)
+layout_mode = 2
+show_percentage = false
+theme_override_styles/fill = SubResource("Style_mana")
+
+[node name="Meta" type="VBoxContainer" parent="SafeArea/Top/Content"]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="SafeArea/Top/Content/Meta"]
+layout_mode = 2
+text = "LV 1"
+
+[node name="Time" type="Label" parent="SafeArea/Top/Content/Meta"]
+layout_mode = 2
+text = "DAY 1  06:00"
+
+[node name="Region" type="Label" parent="SafeArea/Top/Content/Meta"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.941176, 0.690196, 1)
+text = "FARM"
+
+[node name="Notice" type="Label" parent="SafeArea"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 0.941176, 0.690196, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+text = "Welcome to TinyFarm"

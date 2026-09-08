@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/quest_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"craft_workbench"
+title = "Craft a Workbench"
+description = "Build the heart of a maker's workshop."
+objective = 2
+target_id = &"workbench"
+required_amount = 1
+gold_reward = 40

@@ -40,6 +40,7 @@ func craft(recipe: RecipeData) -> bool:
 		GameState.inventory.remove_item(StringName(ingredient), int(recipe.ingredients[ingredient]))
 	GameState.notify("Crafted %s" % output.display_name)
 	item_crafted.emit(output.id, recipe.output_quantity)
+	GameState.item_crafted.emit(output.id, recipe.output_quantity)
 	return true
 
 

@@ -5,6 +5,8 @@ signal region_changed(region_id: StringName)
 signal gold_changed(current: int)
 signal notification_requested(message: String)
 signal hotbar_changed(selected: int)
+signal monster_defeated(monster_id: StringName)
+signal item_crafted(item_id: StringName, quantity: int)
 
 var current_region: StringName = &"farm"
 var player_position := Vector2(352, 270)

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/quest_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"defeat_slimes"
+title = "Defeat 3 Slimes"
+description = "Thin the slimes near the forest path."
+objective = 1
+target_id = &"slime"
+required_amount = 3
+gold_reward = 45

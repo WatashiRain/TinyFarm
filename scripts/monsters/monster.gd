@@ -66,6 +66,7 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 
 func _die() -> void:
 	GameState.player_stats.add_experience(data.xp_reward)
+	GameState.monster_defeated.emit(data.id)
 	var drop: WorldDrop = DROP_SCENE.instantiate()
 	get_tree().current_scene.add_child(drop)
 	drop.global_position = global_position

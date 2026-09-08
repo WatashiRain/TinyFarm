@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/economy/shop_ui.gd" id="1"]
+[node name="ShopUI" type="CanvasLayer"]
+layer = 48
+script = ExtResource("1")
+[node name="Panel" type="PanelContainer" parent="."]
+visible = false
+offset_left = 420.0
+offset_top = 72.0
+offset_right = 625.0
+offset_bottom = 285.0
+[node name="Margin" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+[node name="List" type="VBoxContainer" parent="Panel/Margin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
+[node name="Title" type="Label" parent="Panel/Margin/List"]
+layout_mode = 2
+text = "REN'S SHOP"
+[node name="Gold" type="Label" parent="Panel/Margin/List"]
+layout_mode = 2
+text = "GOLD 100"
+[node name="BuySeed" type="Button" parent="Panel/Margin/List"]
+layout_mode = 2
+text = "Buy Turnip Seed — 5G"
+[node name="SellTurnip" type="Button" parent="Panel/Margin/List"]
+layout_mode = 2
+text = "Sell Turnip"
+[node name="SellWood" type="Button" parent="Panel/Margin/List"]
+layout_mode = 2
+text = "Sell Wood"
+[node name="SellStone" type="Button" parent="Panel/Margin/List"]
+layout_mode = 2
+text = "Sell Stone"
+[node name="Close" type="Button" parent="Panel/Margin/List"]
+layout_mode = 2
+text = "Close"

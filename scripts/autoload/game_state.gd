@@ -23,6 +23,8 @@ const ITEM_PATHS := [
 	"res://resources/items/turnip_seed.tres", "res://resources/items/turnip.tres", "res://resources/items/slime_gel.tres",
 	"res://resources/items/basic_axe.tres", "res://resources/items/basic_pickaxe.tres", "res://resources/items/basic_hoe.tres",
 	"res://resources/items/watering_can.tres", "res://resources/items/basic_sword.tres",
+	"res://resources/items/carrot_seed.tres", "res://resources/items/carrot.tres",
+	"res://resources/items/strawberry_seed.tres", "res://resources/items/strawberry.tres",
 ]
 
 

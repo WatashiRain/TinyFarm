@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/item_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"strawberry"
+display_name = "Strawberry"
+description = "A sweet regrowing crop."
+category = 3
+max_stack = 99
+sell_value = 16
+placeholder_color = Color(0.91, 0.24, 0.34, 1)

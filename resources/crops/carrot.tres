@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CropData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/crop_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"carrot"
+display_name = "Carrot"
+seed_item_id = &"carrot_seed"
+harvest_item_id = &"carrot"
+growth_stages = 4
+days_per_stage = 1
+stage_colors = PackedColorArray(0.55, 0.4, 0.24, 1, 0.36, 0.65, 0.3, 1, 0.48, 0.75, 0.34, 1, 0.96, 0.46, 0.18, 1)

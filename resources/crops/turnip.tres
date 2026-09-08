@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CropData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/crop_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"turnip"
+display_name = "Turnip"
+seed_item_id = &"turnip_seed"
+harvest_item_id = &"turnip"
+growth_stages = 4
+days_per_stage = 1
+stage_colors = PackedColorArray(0.62, 0.43, 0.25, 1, 0.42, 0.67, 0.31, 1, 0.31, 0.59, 0.31, 1, 0.9, 0.83, 0.66, 1)

@@ -43,6 +43,10 @@ func _use_selected_tool() -> void:
 	if selected == &"":
 		GameState.notify("Select a tool on the hotbar")
 		return
+	if _use_farming(selected):
+		stats.consume_energy(1)
+		camera.shake(0.45, 0.08)
+		return
 	if not stats.consume_energy(2):
 		GameState.notify("Too tired")
 		return
@@ -53,8 +57,24 @@ func _use_selected_tool() -> void:
 
 
 func _try_gather_plant() -> void:
-	if _hit_resource(&""):
+	if _harvest_crop():
+		camera.shake(0.4, 0.08)
+	elif _hit_resource(&""):
 		camera.shake(0.5, 0.08)
+
+
+func _use_farming(item_id: StringName) -> bool:
+	for grid: FarmingGrid in get_tree().get_nodes_in_group("farming_grid"):
+		if grid.use_item(item_id, target_position()):
+			return true
+	return false
+
+
+func _harvest_crop() -> bool:
+	for grid: FarmingGrid in get_tree().get_nodes_in_group("farming_grid"):
+		if grid.harvest(target_position()):
+			return true
+	return false
 
 
 func _hit_resource(tool_id: StringName) -> bool:

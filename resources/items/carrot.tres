@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/item_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"carrot"
+display_name = "Carrot"
+description = "A crisp farm crop."
+category = 3
+max_stack = 99
+sell_value = 10
+placeholder_color = Color(0.95, 0.43, 0.18, 1)

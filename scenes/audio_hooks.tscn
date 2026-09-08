@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/audio/audio_hooks.gd" id="1"]
+[node name="AudioHooks" type="Node"]
+script = ExtResource("1")
+[node name="Footsteps" type="AudioStreamPlayer" parent="."]
+[node name="Pickup" type="AudioStreamPlayer" parent="."]
+[node name="ToolHit" type="AudioStreamPlayer" parent="."]
+[node name="Harvest" type="AudioStreamPlayer" parent="."]
+[node name="Attack" type="AudioStreamPlayer" parent="."]
+[node name="EnemyHit" type="AudioStreamPlayer" parent="."]
+[node name="Craft" type="AudioStreamPlayer" parent="."]
+[node name="Build" type="AudioStreamPlayer" parent="."]
+[node name="UI" type="AudioStreamPlayer" parent="."]

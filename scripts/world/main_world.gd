@@ -20,6 +20,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("advance_day"):
 		TimeManager.advance_day()
 		get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("save_game"):
+		SaveManager.save_game()
+		get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("load_game"):
+		SaveManager.load_game()
+		get_viewport().set_input_as_handled()
 
 
 func _update_region(force: bool) -> void:
@@ -34,6 +40,7 @@ func _on_player_died() -> void:
 	player.set_physics_process(false)
 	GameState.add_gold(-int(ceil(GameState.gold * 0.1)))
 	GameState.notify("Chun was defeated — returning home")
+	$DefeatOverlay.show_defeat()
 	await get_tree().create_timer(0.8).timeout
 	player.position = Vector2(352, 270)
 	stats.restore_all()

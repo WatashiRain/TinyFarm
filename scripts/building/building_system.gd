@@ -98,6 +98,15 @@ func _spawn_chest(data: Dictionary) -> void:
 	add_child(chest)
 
 
+func reload_state() -> void:
+	for child: Node in get_children():
+		if child is StorageContainer: child.queue_free()
+	buildings = GameState.world_state.get("placed_buildings", []).duplicate(true)
+	for data: Dictionary in buildings:
+		if StringName(data.get("type", "")) == &"basic_chest": _spawn_chest(data)
+	queue_redraw()
+
+
 func _draw() -> void:
 	for data: Dictionary in buildings:
 		var saved: Array = data["cell"]

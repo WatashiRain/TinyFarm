@@ -77,6 +77,15 @@ func _save() -> void:
 	_refresh()
 
 
+func reload_state() -> void:
+	var saved: Dictionary = GameState.world_state.get("chests", {})
+	if saved.has(String(storage_id)):
+		inventory.apply_state(saved[String(storage_id)])
+	else:
+		inventory.initialize(16)
+	_refresh()
+
+
 func _refresh() -> void:
 	if chest_grid == null: return
 	for index: int in range(16): _button(chest_grid.get_child(index), inventory.slots[index])

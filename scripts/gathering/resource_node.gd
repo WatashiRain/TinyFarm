@@ -62,6 +62,14 @@ func _set_depleted(record: bool) -> void:
 		GameState.world_state["resource_%s" % persistent_id] = true
 
 
+func reload_state() -> void:
+	depleted = bool(GameState.world_state.get("resource_%s" % persistent_id, false))
+	hits_remaining = hits_required
+	visible = not depleted
+	$CollisionShape2D.set_deferred("disabled", depleted)
+	queue_redraw()
+
+
 func _draw() -> void:
 	if kind == Kind.TREE:
 		draw_rect(Rect2(-4, -22, 8, 22), Color("#704538"))

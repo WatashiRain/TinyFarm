@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=25 format=3]
 
 [ext_resource type="Script" path="res://scripts/world/main_world.gd" id="1_world"]
 [ext_resource type="PackedScene" path="res://scenes/test/visual_playground.tscn" id="2_playground"]
@@ -18,6 +18,10 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/dialogue_ui.tscn" id="16_dialogue"]
 [ext_resource type="PackedScene" path="res://scenes/ui/shop_ui.tscn" id="17_shop"]
 [ext_resource type="PackedScene" path="res://scenes/ui/quest_system.tscn" id="18_quests"]
+[ext_resource type="PackedScene" path="res://scenes/home/home_and_bed.tscn" id="19_home"]
+[ext_resource type="PackedScene" path="res://scenes/audio_hooks.tscn" id="20_audio"]
+[ext_resource type="PackedScene" path="res://scenes/ui/debug_tools.tscn" id="21_debug"]
+[ext_resource type="PackedScene" path="res://scenes/ui/defeat_overlay.tscn" id="22_defeat"]
 
 [node name="MainWorld" type="Node2D"]
 script = ExtResource("1_world")
@@ -119,6 +123,9 @@ npc_name = "Ren"
 role = &"ren"
 placeholder_color = Color(0.36, 0.52, 0.72, 1)
 
+[node name="HomeAndBed" parent="." instance=ExtResource("19_home")]
+position = Vector2(230, 166)
+
 [node name="GameplayHUD" parent="." instance=ExtResource("3_hud")]
 
 [node name="InventoryUI" parent="." instance=ExtResource("4_inventory")]
@@ -130,5 +137,11 @@ placeholder_color = Color(0.36, 0.52, 0.72, 1)
 [node name="DialogueUI" parent="." instance=ExtResource("16_dialogue")]
 
 [node name="ShopUI" parent="." instance=ExtResource("17_shop")]
+
+[node name="AudioHooks" parent="." instance=ExtResource("20_audio")]
+
+[node name="DebugTools" parent="." instance=ExtResource("21_debug")]
+
+[node name="DefeatOverlay" parent="." instance=ExtResource("22_defeat")]
 
 [editable path="PlaygroundBase"]

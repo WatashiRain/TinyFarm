@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="TinyFarm"
-run/main_scene="res://scenes/world/main_world.tscn"
+run/main_scene="res://scenes/test/rpg_vertical_slice.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameState="*res://scripts/autoload/game_state.gd"
 TimeManager="*res://scripts/autoload/time_manager.gd"
+SaveManager="*res://scripts/save/save_manager.gd"
 
 [display]
 

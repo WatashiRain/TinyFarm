@@ -128,6 +128,11 @@ func _load_state() -> void:
 	cells = GameState.world_state.get("farm_cells", {}).duplicate(true)
 
 
+func reload_state() -> void:
+	_load_state()
+	queue_redraw()
+
+
 func _draw() -> void:
 	for y: int in range(grid_size.y):
 		for x: int in range(grid_size.x):

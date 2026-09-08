@@ -63,6 +63,25 @@ func _seed_starting_tools() -> void:
 		inventory.add_item(get_item(item_id), 1 if item_id != &"turnip_seed" else 5)
 
 
+func reset_new_game() -> void:
+	current_region = &"farm"
+	player_position = Vector2(352, 270)
+	gold = 100
+	unlocked_skills = {"dash": true, "power_slash": false, "healing_pulse": false}
+	quest_state.clear()
+	world_state.clear()
+	_stored_stats.clear()
+	inventory.initialize(24)
+	_seed_starting_tools()
+	select_hotbar(0)
+	if player_stats != null:
+		player_stats.max_health = 100; player_stats.max_energy = 100; player_stats.max_mana = 50
+		player_stats.level = 1; player_stats.experience = 0; player_stats.attack = 10; player_stats.defense = 2
+		player_stats.restore_all()
+	gold_changed.emit(gold)
+	region_changed.emit(current_region)
+
+
 func register_player(stats: PlayerStats) -> void:
 	player_stats = stats
 	if not _stored_stats.is_empty():

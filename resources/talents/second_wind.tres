@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TalentData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/talent_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"second_wind"
+display_name = "Second Wind"
+description = "Below 30% HP, restore 15 HP once per 30-second cooldown."
+branch = 0
+prerequisite_ids = Array[StringName]([&"endurance"])
+required_level = 6
+effect_type = 10
+effect_value = 15.0
+passive_cooldown = 30.0
+icon_placeholder_color = Color(1, 0.57, 0.43, 1)
+ui_position = Vector2(8, 206)

@@ -18,6 +18,7 @@ const VISUAL_POSITIONS := {
 @export var move_speed: float = 65.0
 
 @onready var directional_sprite: AnimatedSprite2D = $Visual/DirectionalSprite
+@onready var stats: PlayerStats = $Stats
 
 var last_facing: Facing = Facing.DOWN
 
@@ -33,7 +34,7 @@ func _physics_process(_delta: float) -> void:
 		input_vector = input_vector.normalized()
 	var defense: Node = get_node_or_null("DefenseController")
 	var speed_scale: float = defense.movement_multiplier() if defense != null else 1.0
-	velocity = input_vector * move_speed * speed_scale
+	velocity = input_vector * move_speed * stats.movement_speed_multiplier * speed_scale
 	if not input_vector.is_zero_approx():
 		_update_facing(input_vector)
 	move_and_slide()

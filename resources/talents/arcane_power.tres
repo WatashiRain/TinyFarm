@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TalentData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/talent_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"arcane_power"
+display_name = "Arcane Power"
+description = "+10% Power Slash damage."
+branch = 2
+prerequisite_ids = Array[StringName]([&"arcane_efficiency"])
+required_level = 4
+effect_type = 9
+effect_value = 10.0
+target_skill = &"power_slash"
+icon_placeholder_color = Color(0.5, 0.75, 1, 1)
+ui_position = Vector2(294, 172)

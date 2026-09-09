@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TalentData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/talent_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"toughness_ii"
+display_name = "Toughness II"
+description = "+15 Max HP. Builds on Toughness I."
+branch = 0
+prerequisite_ids = Array[StringName]([&"toughness_i"])
+effect_type = 0
+effect_value = 15.0
+icon_placeholder_color = Color(0.91, 0.38, 0.34, 1)
+ui_position = Vector2(8, 70)

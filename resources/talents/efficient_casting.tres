@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TalentData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/talent_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"efficient_casting"
+display_name = "Efficient Casting"
+description = "Reduces all skill Mana costs by 5%."
+branch = 2
+prerequisite_ids = Array[StringName]([&"mana_pool"])
+effect_type = 5
+effect_value = 5.0
+icon_placeholder_color = Color(0.35, 0.65, 1, 1)
+ui_position = Vector2(294, 104)

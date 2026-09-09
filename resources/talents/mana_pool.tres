@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TalentData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/talent_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"mana_pool"
+display_name = "Mana Pool"
+description = "Three ranks add +10, then +15, then +20 Max Mana (45 total)."
+branch = 2
+max_rank = 3
+effect_type = 3
+rank_effect_values = PackedFloat32Array(10, 25, 45)
+icon_placeholder_color = Color(0.28, 0.56, 0.94, 1)
+ui_position = Vector2(294, 36)

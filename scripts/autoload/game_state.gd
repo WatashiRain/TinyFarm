@@ -74,10 +74,9 @@ func reset_new_game() -> void:
 	inventory.initialize(24)
 	_seed_starting_tools()
 	select_hotbar(0)
+	TalentManager.reset_progression(false)
 	if player_stats != null:
-		player_stats.max_health = 100; player_stats.max_energy = 100; player_stats.max_mana = 50
-		player_stats.level = 1; player_stats.experience = 0; player_stats.attack = 10; player_stats.defense = 2
-		player_stats.restore_all()
+		player_stats.reset_base_stats()
 	gold_changed.emit(gold)
 	region_changed.emit(current_region)
 
@@ -88,6 +87,7 @@ func register_player(stats: PlayerStats) -> void:
 		player_stats.apply_state(_stored_stats)
 	if not player_stats.stats_changed.is_connected(_remember_stats):
 		player_stats.stats_changed.connect(_remember_stats)
+	TalentManager.bind_player(player_stats)
 	_remember_stats()
 	player_registered.emit(player_stats)
 
@@ -123,7 +123,7 @@ func _remember_stats() -> void:
 
 func to_state() -> Dictionary:
 	_remember_stats()
-	return {"region": String(current_region), "player_position": [player_position.x, player_position.y], "gold": gold, "skills": unlocked_skills.duplicate(true), "quests": quest_state.duplicate(true), "world": world_state.duplicate(true), "stats": _stored_stats.duplicate(true), "inventory": inventory.to_state(), "selected_hotbar": selected_hotbar}
+	return {"region": String(current_region), "player_position": [player_position.x, player_position.y], "gold": gold, "skills": unlocked_skills.duplicate(true), "quests": quest_state.duplicate(true), "world": world_state.duplicate(true), "stats": _stored_stats.duplicate(true), "talents": TalentManager.to_state(), "inventory": inventory.to_state(), "selected_hotbar": selected_hotbar}
 
 
 func apply_state(data: Dictionary) -> void:
@@ -141,5 +141,6 @@ func apply_state(data: Dictionary) -> void:
 	select_hotbar(int(data.get("selected_hotbar", 0)))
 	if player_stats != null:
 		player_stats.apply_state(_stored_stats)
+	TalentManager.apply_state(data.get("talents", {}), int(_stored_stats.get("level", 1)))
 	region_changed.emit(current_region)
 	gold_changed.emit(gold)

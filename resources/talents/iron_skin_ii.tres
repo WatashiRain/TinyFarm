@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TalentData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/talent_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"iron_skin_ii"
+display_name = "Iron Skin II"
+description = "+5 Defense. Requires Iron Skin I."
+branch = 0
+prerequisite_ids = Array[StringName]([&"iron_skin_i"])
+effect_type = 1
+effect_value = 5.0
+icon_placeholder_color = Color(0.9, 0.39, 0.31, 1)
+ui_position = Vector2(8, 138)

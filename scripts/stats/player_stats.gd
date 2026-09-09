@@ -9,20 +9,35 @@ signal experience_changed(current: int, required: int)
 signal level_changed(level: int)
 signal died
 
-@export var max_health: int = 100
-@export var max_energy: int = 100
-@export var max_mana: int = 50
+@export var base_max_health: int = 100
+@export var base_max_energy: int = 100
+@export var base_max_mana: int = 50
 @export var level: int = 1
 @export var experience: int = 0
-@export var attack: int = 10
-@export var defense: int = 2
+@export var base_attack: int = 10
+@export var base_defense: int = 2
 
+var max_health: int = 100
+var max_energy: int = 100
+var max_mana: int = 50
+var attack: int = 10
+var defense: int = 2
 var health: int
 var energy: int
 var mana: int
+var movement_speed_multiplier: float = 1.0
+var healing_effectiveness_multiplier: float = 1.0
+
+var _talent_modifiers: Dictionary = {}
+var _global_mana_cost_percent := 0.0
+var _global_cooldown_percent := 0.0
+var _skill_mana_cost_percent: Dictionary = {}
+var _skill_cooldown_percent: Dictionary = {}
+var _skill_power_percent: Dictionary = {}
 
 
 func _ready() -> void:
+	_recalculate_final_stats(false)
 	health = max_health
 	energy = max_energy
 	mana = max_mana
@@ -41,7 +56,8 @@ func take_damage(amount: int) -> int:
 
 
 func heal(amount: int) -> void:
-	health = mini(max_health, health + maxi(0, amount))
+	var effective_amount := roundi(maxi(0, amount) * healing_effectiveness_multiplier)
+	health = mini(max_health, health + effective_amount)
 	health_changed.emit(health, max_health)
 	stats_changed.emit()
 
@@ -78,15 +94,14 @@ func restore_mana(amount: int) -> void:
 
 func add_experience(amount: int) -> void:
 	experience += maxi(0, amount)
+	var levels_gained := 0
 	while experience >= experience_to_next_level():
 		experience -= experience_to_next_level()
 		level += 1
-		max_health += 5
-		max_energy += 3
-		health = max_health
-		energy = max_energy
+		levels_gained += 1
 		level_changed.emit(level)
-		GameState.notify("Level up! Level %d" % level)
+	if levels_gained > 0:
+		TalentManager.grant_for_levels(levels_gained)
 	experience_changed.emit(experience, experience_to_next_level())
 	stats_changed.emit()
 
@@ -103,23 +118,83 @@ func restore_all() -> void:
 
 
 func to_state() -> Dictionary:
-	return {"health": health, "max_health": max_health, "energy": energy, "max_energy": max_energy, "mana": mana, "max_mana": max_mana, "level": level, "experience": experience, "attack": attack, "defense": defense}
+	return {
+		"health": health, "energy": energy, "mana": mana,
+		"base_max_health": base_max_health, "base_max_energy": base_max_energy, "base_max_mana": base_max_mana,
+		"base_attack": base_attack, "base_defense": base_defense,
+		"max_health": max_health, "max_energy": max_energy, "max_mana": max_mana,
+		"level": level, "experience": experience,
+	}
 
 
 func apply_state(data: Dictionary) -> void:
 	if data.is_empty():
 		return
-	max_health = int(data.get("max_health", 100))
-	max_energy = int(data.get("max_energy", 100))
-	max_mana = int(data.get("max_mana", 50))
-	health = int(data.get("health", max_health))
-	energy = int(data.get("energy", max_energy))
-	mana = int(data.get("mana", max_mana))
+	# Legacy saves stored already-earned level bonuses in max_*; preserve those as base values.
+	base_max_health = int(data.get("base_max_health", data.get("max_health", 100)))
+	base_max_energy = int(data.get("base_max_energy", data.get("max_energy", 100)))
+	base_max_mana = int(data.get("base_max_mana", data.get("max_mana", 50)))
+	base_attack = int(data.get("base_attack", data.get("attack", 10)))
+	base_defense = int(data.get("base_defense", data.get("defense", 2)))
 	level = int(data.get("level", 1))
 	experience = int(data.get("experience", 0))
-	attack = int(data.get("attack", 10))
-	defense = int(data.get("defense", 2))
+	_recalculate_final_stats(false)
+	health = clampi(int(data.get("health", max_health)), 0, max_health)
+	energy = clampi(int(data.get("energy", max_energy)), 0, max_energy)
+	mana = clampi(int(data.get("mana", max_mana)), 0, max_mana)
 	_emit_all()
+
+
+func reset_base_stats() -> void:
+	base_max_health = 100
+	base_max_energy = 100
+	base_max_mana = 50
+	base_attack = 10
+	base_defense = 2
+	level = 1
+	experience = 0
+	_talent_modifiers.clear()
+	_recalculate_final_stats(false)
+	restore_all()
+
+
+func apply_talent_modifiers(modifiers: Dictionary) -> void:
+	_talent_modifiers = modifiers.duplicate(true)
+	_recalculate_final_stats(true)
+
+
+func adjusted_skill_mana_cost(base_cost: int, skill_id: StringName) -> int:
+	var reduction := _global_mana_cost_percent + float(_skill_mana_cost_percent.get(String(skill_id), 0.0))
+	return maxi(0, floori(base_cost * (1.0 - clampf(reduction, 0.0, 90.0) / 100.0)))
+
+
+func adjusted_skill_cooldown(base_cooldown: float, skill_id: StringName) -> float:
+	var reduction := _global_cooldown_percent + float(_skill_cooldown_percent.get(String(skill_id), 0.0))
+	return maxf(0.05, base_cooldown * (1.0 - clampf(reduction, 0.0, 90.0) / 100.0))
+
+
+func skill_power_multiplier(skill_id: StringName) -> float:
+	return 1.0 + float(_skill_power_percent.get(String(skill_id), 0.0)) / 100.0
+
+
+func _recalculate_final_stats(emit_changes: bool) -> void:
+	max_health = base_max_health + roundi(float(_talent_modifiers.get("max_health", 0.0)))
+	max_energy = base_max_energy + roundi(float(_talent_modifiers.get("max_energy", 0.0)))
+	max_mana = base_max_mana + roundi(float(_talent_modifiers.get("max_mana", 0.0)))
+	attack = base_attack
+	defense = base_defense + roundi(float(_talent_modifiers.get("defense", 0.0)))
+	movement_speed_multiplier = 1.0 + float(_talent_modifiers.get("move_speed_percent", 0.0)) / 100.0
+	healing_effectiveness_multiplier = 1.0 + float(_talent_modifiers.get("healing_effectiveness_percent", 0.0)) / 100.0
+	_global_mana_cost_percent = float(_talent_modifiers.get("global_mana_cost_percent", 0.0))
+	_global_cooldown_percent = float(_talent_modifiers.get("global_cooldown_percent", 0.0))
+	_skill_mana_cost_percent = Dictionary(_talent_modifiers.get("skill_mana_cost_percent", {})).duplicate(true)
+	_skill_cooldown_percent = Dictionary(_talent_modifiers.get("skill_cooldown_percent", {})).duplicate(true)
+	_skill_power_percent = Dictionary(_talent_modifiers.get("skill_power_percent", {})).duplicate(true)
+	health = clampi(health, 0, max_health)
+	energy = clampi(energy, 0, max_energy)
+	mana = clampi(mana, 0, max_mana)
+	if emit_changes:
+		_emit_all()
 
 
 func _emit_all() -> void:

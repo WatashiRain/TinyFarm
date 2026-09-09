@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TalentData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/talent_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"toughness_i"
+display_name = "Toughness I"
+description = "+10 Max HP. A sturdier foundation for dangerous expeditions."
+branch = 0
+effect_type = 0
+effect_value = 10.0
+icon_placeholder_color = Color(0.86, 0.31, 0.29, 1)
+ui_position = Vector2(8, 36)

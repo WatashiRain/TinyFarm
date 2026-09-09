@@ -4,7 +4,7 @@ signal game_saved(path: String)
 signal game_loaded(path: String)
 signal save_failed(message: String)
 
-const SAVE_VERSION := 1
+const SAVE_VERSION := 2
 const SAVE_PATH := "user://tinyfarm_save.json"
 var active_save_path := SAVE_PATH
 
@@ -29,7 +29,8 @@ func load_game() -> bool:
 	var file := FileAccess.open(active_save_path, FileAccess.READ)
 	var parsed = JSON.parse_string(file.get_as_text())
 	file.close()
-	if typeof(parsed) != TYPE_DICTIONARY or int(parsed.get("save_version", 0)) != SAVE_VERSION:
+	var version := int(parsed.get("save_version", 0)) if typeof(parsed) == TYPE_DICTIONARY else 0
+	if typeof(parsed) != TYPE_DICTIONARY or version <= 0 or version > SAVE_VERSION:
 		save_failed.emit("Unsupported save data")
 		return false
 	GameState.apply_state(parsed.get("game", {}))

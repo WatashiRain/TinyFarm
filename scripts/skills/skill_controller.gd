@@ -42,10 +42,11 @@ func use_skill(id: StringName) -> bool:
 	if id == &"healing_pulse" and stats.health >= stats.max_health:
 		GameState.notify("Health already full")
 		return false
-	if not stats.consume_mana(skill.mana_cost):
+	var mana_cost := stats.adjusted_skill_mana_cost(skill.mana_cost, id)
+	if not stats.consume_mana(mana_cost):
 		GameState.notify("Not enough mana")
 		return false
-	cooldowns[id] = skill.cooldown
+	cooldowns[id] = stats.adjusted_skill_cooldown(skill.cooldown, id)
 	if id == &"dash":
 		var direction: Vector2 = player.get_node("ToolController").facing_vector()
 		var start := player.global_position
@@ -54,7 +55,7 @@ func use_skill(id: StringName) -> bool:
 		var tween := trail.create_tween(); tween.tween_property(trail, "modulate:a", 0.0, 0.25); tween.tween_callback(trail.queue_free)
 	elif id == &"power_slash":
 		combat.cooldown = 0.0
-		combat.attack(2.0, 36.0, skill.placeholder_color)
+		combat.attack(2.0 * stats.skill_power_multiplier(id), 36.0, skill.placeholder_color)
 	else:
 		stats.heal(30)
 		pulse_time = 0.45

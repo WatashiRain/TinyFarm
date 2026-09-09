@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TalentData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/talent_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"quick_recovery"
+display_name = "Quick Recovery"
+description = "Reduces all player skill cooldowns by 5%."
+branch = 1
+prerequisite_ids = Array[StringName]([&"efficient_dash"])
+required_level = 4
+effect_type = 6
+effect_value = 5.0
+icon_placeholder_color = Color(0.82, 0.94, 0.42, 1)
+ui_position = Vector2(151, 172)

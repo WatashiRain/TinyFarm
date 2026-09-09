@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TalentData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/data/talent_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"dash_training"
+display_name = "Dash Training"
+description = "Reduces Dash cooldown by 10%."
+branch = 1
+prerequisite_ids = Array[StringName]([&"swift_step"])
+effect_type = 6
+effect_value = 10.0
+target_skill = &"dash"
+icon_placeholder_color = Color(0.76, 0.87, 0.32, 1)
+ui_position = Vector2(151, 104)

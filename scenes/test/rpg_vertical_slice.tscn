@@ -14,5 +14,5 @@ offset_bottom = 296.0
 theme_override_colors/font_color = Color(1, 0.941176, 0.690196, 0.78)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
 theme_override_font_sizes/font_size = 7
-text = "I Inventory   C Craft   B/V Build   X Attack   Q/E/R Skills   F Interact   F5 Save   F9 Load   F6 Day   F3 Debug"
+text = "T Talents   I Inventory   C Craft   B/V Build   X Attack   Q/E/R Skills   F5 Save   F9 Load   F3 Debug"
 horizontal_alignment = 1

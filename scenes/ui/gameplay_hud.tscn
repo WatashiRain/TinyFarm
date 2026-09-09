@@ -82,6 +82,12 @@ layout_mode = 2
 layout_mode = 2
 text = "LV 1"
 
+[node name="TalentPoints" type="Label" parent="SafeArea/Top/Content/Meta"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.878431, 0.541176, 1)
+text = "TP 0"
+visible = false
+
 [node name="Time" type="Label" parent="SafeArea/Top/Content/Meta"]
 layout_mode = 2
 text = "DAY 1  06:00"

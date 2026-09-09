@@ -17,12 +17,17 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _build_ui() -> void:
 	layer = 70
-	panel = PanelContainer.new(); panel.position = Vector2(220, 38); panel.custom_minimum_size = Vector2(200, 265); panel.visible = false; add_child(panel)
-	var list := VBoxContainer.new(); panel.add_child(list)
+	panel = PanelContainer.new(); panel.position = Vector2(220, 38); panel.custom_minimum_size = Vector2(210, 300); panel.visible = false; add_child(panel)
+	var scroll := ScrollContainer.new(); scroll.custom_minimum_size = Vector2(205, 295); panel.add_child(scroll)
+	var list := VBoxContainer.new(); list.custom_minimum_size = Vector2(190, 0); scroll.add_child(list)
 	var title := Label.new(); title.text = "DEVELOPER TOOLS [F3]"; title.add_theme_font_size_override("font_size", 10); list.add_child(title)
 	_add_button(list, "Advance Day", func() -> void: TimeManager.advance_day())
 	_add_button(list, "Give Materials", give_materials)
 	_add_button(list, "Give 30 XP", func() -> void: GameState.player_stats.add_experience(30))
+	_add_button(list, "Give 1 Talent Point", func() -> void: TalentManager.grant_points(1))
+	_add_button(list, "Give 5 Talent Points", func() -> void: TalentManager.grant_points(5))
+	_add_button(list, "Level Up", level_up)
+	_add_button(list, "Reset Talents", func() -> void: TalentManager.reset_talents())
 	_add_button(list, "Heal / Restore", func() -> void: GameState.player_stats.restore_all())
 	_add_button(list, "Spawn Slime", spawn_slime)
 	_add_button(list, "Unlock Skills", unlock_skills)
@@ -39,6 +44,12 @@ func give_materials() -> void:
 	for id: StringName in [&"wood", &"stone", &"fiber", &"turnip_seed"]:
 		GameState.inventory.add_item(GameState.get_item(id), 10)
 	GameState.notify("Developer materials added")
+
+
+func level_up() -> void:
+	var stats := GameState.player_stats
+	if stats != null:
+		stats.add_experience(stats.experience_to_next_level() - stats.experience)
 
 
 func spawn_slime() -> void:

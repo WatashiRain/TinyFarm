@@ -25,7 +25,13 @@ func activate(direction: Vector2, damage: int, attack_range: float = 26.0, color
 	for hurtbox: Hurtbox in get_tree().get_nodes_in_group("hurtboxes"):
 		if hurtbox.team == team or hurtbox.global_position.distance_to(center) > attack_range:
 			continue
-		hurtbox.receive_hit(damage, direction * 70.0)
+		var attack := AttackData.new()
+		attack.id = &"player_melee"
+		attack.type = AttackData.Type.MELEE
+		attack.damage = damage
+		attack.knockback = 70.0
+		attack.team = team
+		hurtbox.receive_attack(attack, direction, get_parent().get_parent())
 		hits += 1
 	return hits
 

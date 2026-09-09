@@ -31,7 +31,9 @@ func _physics_process(_delta: float) -> void:
 	var input_vector := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if input_vector.length_squared() > 1.0:
 		input_vector = input_vector.normalized()
-	velocity = input_vector * move_speed
+	var defense: Node = get_node_or_null("DefenseController")
+	var speed_scale: float = defense.movement_multiplier() if defense != null else 1.0
+	velocity = input_vector * move_speed * speed_scale
 	if not input_vector.is_zero_approx():
 		_update_facing(input_vector)
 	move_and_slide()

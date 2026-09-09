@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="AttackPatternData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/attack_pattern_data.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/attack_data.gd" id="2"]
+[sub_resource type="Resource" id="Attack"]
+script = ExtResource("2")
+id = &"spirit_straight"
+type = 1
+damage = 9
+knockback = 32.0
+parryable = true
+blockable = true
+reflectable = true
+team = &"monster"
+[resource]
+script = ExtResource("1")
+id = &"spirit_straight"
+mode = 1
+attack = SubResource("Attack")
+minimum_distance = 28.0
+maximum_distance = 135.0
+cooldown = 1.8
+weight = 1.2
+telegraph_time = 0.35
+projectile_speed = 82.0
+projectile_lifetime = 3.0

@@ -1,5 +1,7 @@
-[gd_resource type="Resource" script_class="MonsterData" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="MonsterData" load_steps=4 format=3]
 [ext_resource type="Script" path="res://scripts/data/monster_data.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/attack_patterns/bat_dive.tres" id="2"]
+[ext_resource type="Resource" path="res://resources/attack_patterns/bat_sonic.tres" id="3"]
 [resource]
 script = ExtResource("1")
 id = &"bat"
@@ -10,3 +12,5 @@ move_speed = 34.0
 xp_reward = 10
 loot_item_id = &"bat_wing"
 placeholder_color = Color(0.28, 0.24, 0.4, 1)
+preferred_distance = 58.0
+attack_patterns = [ExtResource("2"), ExtResource("3")]

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="AttackPatternData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/data/attack_pattern_data.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/attack_data.gd" id="2"]
+[sub_resource type="Resource" id="Attack"]
+script = ExtResource("2")
+id = &"bat_sonic"
+type = 2
+damage = 10
+knockback = 28.0
+parryable = true
+blockable = true
+reflectable = false
+team = &"monster"
+[resource]
+script = ExtResource("1")
+id = &"bat_sonic"
+mode = 3
+attack = SubResource("Attack")
+minimum_distance = 35.0
+maximum_distance = 105.0
+cooldown = 2.6
+weight = 1.4
+telegraph_time = 0.55
+wave_width_degrees = 58.0

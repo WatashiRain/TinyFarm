@@ -8,6 +8,8 @@ enum State { IDLE, WANDER, CHASE, ATTACK, RETURN }
 @export var leash_range := 150.0
 @export var attack_range := 18.0
 
+@onready var attack_controller: MonsterAttackController = $AttackController
+
 var health: int
 var home: Vector2
 var state := State.IDLE
@@ -15,6 +17,7 @@ var state_time := 1.0
 var attack_cooldown := 0.0
 var wander_direction := Vector2.ZERO
 var player: PlayerController
+var stagger_time := 0.0
 
 const DROP_SCENE := preload("res://scenes/items/world_drop.tscn")
 
@@ -29,22 +32,32 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if player == null: return
-	attack_cooldown = maxf(0.0, attack_cooldown - delta)
+	if stagger_time > 0.0:
+		stagger_time = maxf(0.0, stagger_time - delta)
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+	if attack_controller.busy:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 	state_time -= delta
 	var player_distance := global_position.distance_to(player.global_position)
 	var home_distance := global_position.distance_to(home)
 	if home_distance > leash_range: state = State.RETURN
-	elif player_distance <= attack_range: state = State.ATTACK
+	elif player_distance <= aggro_range and attack_controller.try_attack(player_distance): state = State.ATTACK
 	elif player_distance <= aggro_range: state = State.CHASE
 	elif state in [State.CHASE, State.ATTACK, State.RETURN]: state = State.IDLE; state_time = 1.0
 	match state:
-		State.CHASE: velocity = global_position.direction_to(player.global_position) * data.move_speed
-		State.ATTACK:
-			velocity = Vector2.ZERO
-			if attack_cooldown <= 0.0:
-				attack_cooldown = 1.1
-				var hurtbox := player.get_node("Hurtbox") as Hurtbox
-				hurtbox.receive_hit(data.attack_damage, global_position.direction_to(player.global_position) * 35.0)
+		State.CHASE:
+			var to_player := global_position.direction_to(player.global_position)
+			if data.preferred_distance > 0.0 and player_distance < data.preferred_distance - 12.0:
+				velocity = -to_player * data.move_speed * 0.8
+			elif data.preferred_distance > 0.0 and player_distance <= data.preferred_distance + 10.0:
+				velocity = Vector2(-to_player.y, to_player.x) * data.move_speed * 0.35
+			else:
+				velocity = to_player * data.move_speed
+		State.ATTACK: velocity = Vector2.ZERO
 		State.RETURN: velocity = global_position.direction_to(home) * data.move_speed
 		State.IDLE:
 			velocity = Vector2.ZERO
@@ -54,6 +67,14 @@ func _physics_process(delta: float) -> void:
 			velocity = wander_direction * data.move_speed * 0.45
 			if state_time <= 0.0: state = State.IDLE; state_time = 1.8
 	move_and_slide()
+
+
+func stagger(duration: float) -> void:
+	stagger_time = maxf(stagger_time, duration)
+	attack_controller.busy = false
+	attack_controller.telegraph.hide_attack()
+	modulate = Color("#fff3a1")
+	var tween := create_tween(); tween.tween_property(self, "modulate", Color.WHITE, duration)
 
 
 func take_hit(damage: int, knockback: Vector2) -> void:

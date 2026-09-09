@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=6 format=3]
 [ext_resource type="Script" path="res://scripts/monsters/monster.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/combat/hurtbox.tscn" id="2"]
+[ext_resource type="Script" path="res://scripts/monsters/monster_attack_controller.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/combat/attack_telegraph.gd" id="4"]
 [sub_resource type="CircleShape2D" id="1_shape"]
 radius = 9.0
 [node name="Monster" type="CharacterBody2D"]
@@ -11,3 +13,9 @@ script = ExtResource("1")
 shape = SubResource("1_shape")
 [node name="Hurtbox" parent="." instance=ExtResource("2")]
 team = &"monster"
+
+[node name="AttackController" type="Node2D" parent="."]
+script = ExtResource("3")
+
+[node name="Telegraph" type="Node2D" parent="AttackController"]
+script = ExtResource("4")

@@ -10,3 +10,5 @@ extends Resource
 @export var loot_item_id: StringName
 @export var loot_quantity: int = 1
 @export var placeholder_color := Color.GREEN
+@export var preferred_distance := 0.0
+@export var attack_patterns: Array[AttackPatternData] = []

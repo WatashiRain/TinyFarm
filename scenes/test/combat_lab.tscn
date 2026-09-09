@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3]
+[ext_resource type="Script" path="res://scripts/world/combat_lab.gd" id="1_lab"]
+[ext_resource type="PackedScene" path="res://scenes/characters/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/monsters/monster.tscn" id="3_monster"]
+[ext_resource type="Resource" path="res://resources/monsters/slime.tres" id="4_slime"]
+[ext_resource type="Resource" path="res://resources/monsters/bat.tres" id="5_bat"]
+[ext_resource type="Resource" path="res://resources/monsters/spirit.tres" id="6_spirit"]
+[ext_resource type="PackedScene" path="res://scenes/ui/gameplay_hud.tscn" id="7_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/combat_debug_overlay.tscn" id="8_debug"]
+[ext_resource type="PackedScene" path="res://scenes/audio_hooks.tscn" id="9_audio"]
+[ext_resource type="PackedScene" path="res://scenes/ui/debug_tools.tscn" id="10_tools"]
+[node name="CombatLab" type="Node2D"]
+script = ExtResource("1_lab")
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(320, 205)
+[node name="Enemies" type="Node2D" parent="."]
+[node name="Slime" parent="Enemies" instance=ExtResource("3_monster")]
+position = Vector2(245, 205)
+data = ExtResource("4_slime")
+[node name="ForestBat" parent="Enemies" instance=ExtResource("3_monster")]
+position = Vector2(397, 165)
+data = ExtResource("5_bat")
+aggro_range = 130.0
+[node name="ForestSpirit" parent="Enemies" instance=ExtResource("3_monster")]
+position = Vector2(450, 245)
+data = ExtResource("6_spirit")
+aggro_range = 150.0
+[node name="GameplayHUD" parent="." instance=ExtResource("7_hud")]
+[node name="AudioHooks" parent="." instance=ExtResource("9_audio")]
+[node name="CombatDebugOverlay" parent="." instance=ExtResource("8_debug")]
+[node name="DebugTools" parent="." instance=ExtResource("10_tools")]
+[node name="LabUI" type="CanvasLayer" parent="."]
+layer = 55
+[node name="Panel" type="PanelContainer" parent="LabUI"]
+offset_left = 185.0
+offset_top = 8.0
+offset_right = 630.0
+offset_bottom = 52.0
+[node name="Buttons" type="HBoxContainer" parent="LabUI/Panel"]
+layout_mode = 2
+[node name="Heal" type="Button" parent="LabUI/Panel/Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Heal"
+[node name="LowEnergy" type="Button" parent="LabUI/Panel/Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Energy 3"
+[node name="Reset" type="Button" parent="LabUI/Panel/Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Reset"
+[node name="Guides" type="Button" parent="LabUI/Panel/Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Guides"
+[node name="Help" type="Label" parent="LabUI"]
+offset_left = 34.0
+offset_top = 315.0
+offset_right = 606.0
+offset_bottom = 346.0
+theme_override_colors/font_color = Color(1, 0.94, 0.69, 1)
+theme_override_font_sizes/font_size = 8
+text = "X / Left Mouse: Sword    Right Mouse: Parry → Block\nQ: Dash    E: Power Slash    R: Healing Pulse    F3: Developer Tools"
+horizontal_alignment = 1

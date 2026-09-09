@@ -27,7 +27,7 @@ func _build_ui() -> void:
 	_add_button(list, "Spawn Slime", spawn_slime)
 	_add_button(list, "Unlock Skills", unlock_skills)
 	_add_button(list, "Give 100 Gold", func() -> void: GameState.add_gold(100))
-	_add_button(list, "Toggle Target Guides", toggle_guides)
+	_add_button(list, "Toggle Combat Guides", toggle_guides)
 	_add_button(list, "New Game", func() -> void: SaveManager.new_game())
 
 
@@ -55,5 +55,8 @@ func unlock_skills() -> void:
 
 func toggle_guides() -> void:
 	var player := get_tree().get_first_node_in_group("player") as PlayerController
-	var tools := player.get_node("ToolController") as ToolController; tools.show_target = not tools.show_target
-	GameState.notify("Target guides %s" % ("on" if tools.show_target else "off"))
+	var overlays := get_tree().get_nodes_in_group("combat_debug_overlay")
+	var enabled := overlays.is_empty() or not (overlays[0] as CombatDebugOverlay).visible
+	var tools := player.get_node("ToolController") as ToolController; tools.show_target = enabled
+	for overlay: CombatDebugOverlay in overlays: overlay.set_enabled(enabled)
+	GameState.notify("Combat guides %s" % ("on" if enabled else "off"))

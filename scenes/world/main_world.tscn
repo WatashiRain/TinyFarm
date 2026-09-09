@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3]
+[gd_scene load_steps=26 format=3]
 
 [ext_resource type="Script" path="res://scripts/world/main_world.gd" id="1_world"]
 [ext_resource type="PackedScene" path="res://scenes/test/visual_playground.tscn" id="2_playground"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" path="res://scenes/audio_hooks.tscn" id="20_audio"]
 [ext_resource type="PackedScene" path="res://scenes/ui/debug_tools.tscn" id="21_debug"]
 [ext_resource type="PackedScene" path="res://scenes/ui/defeat_overlay.tscn" id="22_defeat"]
+[ext_resource type="PackedScene" path="res://scenes/ui/combat_debug_overlay.tscn" id="23_combat_debug"]
 
 [node name="MainWorld" type="Node2D"]
 script = ExtResource("1_world")
@@ -106,10 +107,12 @@ data = ExtResource("12_slime")
 [node name="ForestBat" parent="Monsters" instance=ExtResource("11_monster")]
 position = Vector2(724, 220)
 data = ExtResource("13_bat")
+aggro_range = 120.0
 
 [node name="ForestSpirit" parent="Monsters" instance=ExtResource("11_monster")]
 position = Vector2(752, 322)
 data = ExtResource("14_spirit")
+aggro_range = 145.0
 
 [node name="NPCs" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -143,5 +146,7 @@ position = Vector2(230, 166)
 [node name="DebugTools" parent="." instance=ExtResource("21_debug")]
 
 [node name="DefeatOverlay" parent="." instance=ExtResource("22_defeat")]
+
+[node name="CombatDebugOverlay" parent="." instance=ExtResource("23_combat_debug")]
 
 [editable path="PlaygroundBase"]

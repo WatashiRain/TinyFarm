@@ -21,10 +21,15 @@ func _process(delta: float) -> void:
 	if pulse_time > 0.0: pulse_time -= delta; queue_redraw()
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("skill_dash"): use_skill(&"dash")
-	elif event.is_action_pressed("skill_power_slash"): use_skill(&"power_slash")
-	elif event.is_action_pressed("skill_healing_pulse"): use_skill(&"healing_pulse")
+func _input(event: InputEvent) -> void:
+	if event.is_echo():
+		return
+	if event.is_action_pressed("skill_dash"):
+		use_skill(&"dash")
+	elif event.is_action_pressed("skill_power_slash"):
+		use_skill(&"power_slash")
+	elif event.is_action_pressed("skill_healing_pulse"):
+		use_skill(&"healing_pulse")
 
 
 func use_skill(id: StringName) -> bool:
@@ -33,6 +38,9 @@ func use_skill(id: StringName) -> bool:
 		return false
 	var skill: SkillData = skills[id]
 	if float(cooldowns.get(id, 0.0)) > 0.0:
+		return false
+	if id == &"healing_pulse" and stats.health >= stats.max_health:
+		GameState.notify("Health already full")
 		return false
 	if not stats.consume_mana(skill.mana_cost):
 		GameState.notify("Not enough mana")

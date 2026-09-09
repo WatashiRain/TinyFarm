@@ -11,7 +11,7 @@ signal item_crafted(item_id: StringName, quantity: int)
 var current_region: StringName = &"farm"
 var player_position := Vector2(352, 270)
 var gold: int = 100
-var unlocked_skills: Dictionary = {"dash": true, "power_slash": false, "healing_pulse": false}
+var unlocked_skills: Dictionary = {"dash": true, "power_slash": true, "healing_pulse": true}
 var quest_state: Dictionary = {}
 var world_state: Dictionary = {}
 var player_stats: PlayerStats
@@ -67,7 +67,7 @@ func reset_new_game() -> void:
 	current_region = &"farm"
 	player_position = Vector2(352, 270)
 	gold = 100
-	unlocked_skills = {"dash": true, "power_slash": false, "healing_pulse": false}
+	unlocked_skills = {"dash": true, "power_slash": true, "healing_pulse": true}
 	quest_state.clear()
 	world_state.clear()
 	_stored_stats.clear()
@@ -132,6 +132,8 @@ func apply_state(data: Dictionary) -> void:
 	player_position = Vector2(float(saved_position[0]), float(saved_position[1]))
 	gold = int(data.get("gold", 100))
 	unlocked_skills = data.get("skills", unlocked_skills).duplicate(true)
+	# These three actions became baseline combat abilities in combat v0.2.
+	unlocked_skills.merge({"dash": true, "power_slash": true, "healing_pulse": true}, true)
 	quest_state = data.get("quests", {}).duplicate(true)
 	world_state = data.get("world", {}).duplicate(true)
 	_stored_stats = data.get("stats", {}).duplicate(true)

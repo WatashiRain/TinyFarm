@@ -5,6 +5,7 @@ extends Area2D
 var effect_time := 0.0
 var effect_direction := Vector2.DOWN
 var effect_color := Color("#ffe089")
+var effect_range := 26.0
 
 
 func _process(delta: float) -> void:
@@ -17,6 +18,7 @@ func activate(direction: Vector2, damage: int, attack_range: float = 26.0, color
 	effect_time = 0.14
 	effect_direction = direction
 	effect_color = color
+	effect_range = attack_range
 	queue_redraw()
 	var center := global_position + direction * 18.0
 	var hits := 0
@@ -31,5 +33,6 @@ func activate(direction: Vector2, damage: int, attack_range: float = 26.0, color
 func _draw() -> void:
 	if effect_time <= 0.0: return
 	var side := Vector2(-effect_direction.y, effect_direction.x)
-	var center := effect_direction * 18.0
-	draw_polyline(PackedVector2Array([center - side * 10.0, center + effect_direction * 8.0, center + side * 10.0]), effect_color, 3.0)
+	var center := effect_direction * (effect_range * 0.7)
+	var half_width := effect_range * 0.4
+	draw_polyline(PackedVector2Array([center - side * half_width, center + effect_direction * effect_range * 0.3, center + side * half_width]), effect_color, 3.0)
